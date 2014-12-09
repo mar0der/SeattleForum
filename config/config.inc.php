@@ -1,7 +1,7 @@
 <?php
 //PATHS AND DEFAULT FILES
-$c['siteName'] = 'www.peterpetkov.com/seattle';
-$c['paths']['url'] = 'http://localhost/Seattle/public/';
+$c['siteName'] = 'forum.peterpetkov.com';
+$c['paths']['url'] = '/';
 $c['paths']['libs'] = '../libs/';
 $c['paths']['controllers'] = '../controllers/';
 $c['paths']['models'] = '../models/';

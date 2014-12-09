@@ -30,7 +30,9 @@ class Menu {
             $mainMenu = '';
             foreach($menuItems as $v)
 	    {
-                $mainMenu .= "<a href=\"/".strtolower($v)."\"/>".$v."</a> ";
+                $path = Config::getValue("paths");
+                $path = $path["url"];
+                $mainMenu .= "<a href=\"".$path.strtolower($v)."\"/>".$v."</a> ";
             }
 	    echo $mainMenu;
         }
