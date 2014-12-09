@@ -13,6 +13,6 @@ $c['database']['type'] = 'mysql';
 $c['database']['host'] = 'localhost';
 $c['database']['dbname'] = 'myMVC';
 $c['database']['username'] = 'myMVC';
-$c['database']['password'] = '';
+$c['database']['password'] = '111';
 //hashes
 $c['salt'] = 'oDI;-A=qM_SF7}h/Eih5Z0SQ{X^Zpc24ezlQbJoq|VhRw[ARZ+}t,^w:Xen`o[n%';
