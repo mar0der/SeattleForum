@@ -1,1 +1,1 @@
-This is my simple PHP MVC framework. It is functional but still basic. 
+This is team "Seattle" PHP Basics project. A forum.
