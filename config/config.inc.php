@@ -11,8 +11,8 @@ $c['defaultFile'] = 'Index.php';
 //DB CONFIGURATION
 $c['database']['type'] = 'mysql';
 $c['database']['host'] = 'localhost';
-$c['database']['dbname'] = 'myMVC';
-$c['database']['username'] = 'myMVC';
+$c['database']['dbname'] = 'seattleForum';
+$c['database']['username'] = 'seattleForum';
 $c['database']['password'] = '';
 //hashes
 $c['salt'] = 'oDI;-A=qM_SF7}h/Eih5Z0SQ{X^Zpc24ezlQbJoq|VhRw[ARZ+}t,^w:Xen`o[n%';
