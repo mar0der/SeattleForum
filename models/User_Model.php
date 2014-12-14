@@ -10,6 +10,7 @@ class User_Model extends Model
     
     public function addUser($username, $password, $email, $realName="", $gender="", $avatar=""){
         //use var_dump for debugging//use var_dump for debugging
+        
         return $isDone;
     }
     

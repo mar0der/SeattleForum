@@ -13,7 +13,7 @@ class Questions extends Controller {
         $this->view->title = 'questions/index go to view';
         //testing for aside tags and categories
         //$this->model->getAllTags();
-        //$this>model->getAllCategories();
+        //$this->model->getAllCategories();
         $this->view->render();
     }
 
