@@ -1,3 +1,31 @@
+<style>
+    aside {
+        width: 180px;
+        float: left;
+        clear: left;
+        background-color:bisque;
+        border-radius: 10px;
+        border: 1px solid #436fac;
+        display: inline-block;
+        padding:10px;
+    }
+
+    aside#tags{
+        margin-top: 20px;
+    }
+    section#questions{
+        width:780px;
+        float: right;
+        background-color: blue;
+        vertical-align: top;
+        background-color:white;
+        border-radius: 10px;
+        border: 1px solid #436fac;
+        padding:10px;
+    }
+
+</style>
+
 <aside id="categories">
     <h4>Categories</h4>
     <ul>
@@ -46,9 +74,9 @@
     <a href="">tag24</a>
     <a href="">tag25</a>
 </aside>
-<section>
+<section id="questions">
     <article>
-        <h4 id="headerArticle"><a href="#"></a>question subject 1</h4>
+        <header><a href="#"></a>question subject 1</header>
         <p>
             <span>usrImg</span>
             <a href="#">user</a>
@@ -56,7 +84,6 @@
             <span>tagImg</span>
             <a href="">tag1</a>
         </p>
-        <hr>
         <div>bottom part of the article do it yourself</div>
     </article>
 </section>

@@ -17,7 +17,7 @@
         }
         ?>
     </head>
-    <body> 
+    <body>
         <header>
             <?php Menu::renderMainMenu(); ?>
             <?php if (Session::get('loggedIn') == false): ?>
@@ -27,4 +27,4 @@
 	    <?php endif; ?>
 	    <div style ="float:right; font-size: 20px"><b> Hello, <?php Menu::renderLoggedUser(); ?>!</b></div>
         </header>
-        <main>
+        <main class="clearfix">

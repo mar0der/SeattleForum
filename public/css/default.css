@@ -1,4 +1,17 @@
+html, body, header, footer, main, aside, div, section, article, p, h, h2, h3, h4, h4, h5, h6, table, tr, td, th{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix:before, .clearfix:after {  content: "\0020"; display: block; height: 0; visibility: hidden;    } 
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
 body {
+    width:1020px;
+    margin: 0 auto;
+    height: auto;
     background: silver;
     font: 14px 'trebuchet ms', arial, sans-serif;
 }
@@ -17,6 +30,7 @@ body > header {
 }
 
 main {
+    height: 100%;
     background: #fff;
     padding: 20px;
     border-left: 1px solid #436fac;
