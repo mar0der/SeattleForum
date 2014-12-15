@@ -4,7 +4,7 @@ body {
 }
 
 /** Structure */
-#header {
+body > header {
     padding: 20px;
     background: #fff;
     border-top-left-radius: 10px;
@@ -16,7 +16,7 @@ body {
     box-shadow: 2px 2px 2px;
 }
 
-#content {
+main {
     background: #fff;
     padding: 20px;
     border-left: 1px solid #436fac;
@@ -24,7 +24,7 @@ body {
     box-shadow: 2px 2px 2px;
 }
 
-#footer {
+footer {
     background: #fff;
     color: #000;
     padding: 20px;
@@ -37,7 +37,7 @@ body {
 }
 
 /* Links */
-#header a {
+header a {
     color: #fff;
     background: #436fac;
     padding: 4px 15px;
@@ -48,7 +48,7 @@ body {
     box-shadow: 3px 3px 3px silver;
 }
 
-#header a:hover {
+header a:hover {
     background: silver;
 }
 

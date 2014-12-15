@@ -1,4 +1,4 @@
-        </div>
-        <div id="footer"><?php echo Config::getValue('siteName')." &copy; ".date('Y');?></div>
+        </main>
+        <footer><?php echo Config::getValue('siteName')." &copy; ".date('Y');?></footer>
     </body>
 </html>
