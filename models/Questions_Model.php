@@ -74,6 +74,6 @@ FROM questions as A INNER JOIN users ON A.creator_id = B.userid as B WHERE A.id 
 
     private function getNumberOfAnswers($questionId) {
         $result = $this->db->select("SELECT COUNT(*) FROM answers WHERE question_id = :q_id", array(':q_id' => $questionId));
-        return result;
+        return $result;
     }
 }
