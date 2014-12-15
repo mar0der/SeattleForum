@@ -51,7 +51,7 @@ footer {
 }
 
 /* Links */
-header a {
+header > a {
     color: #fff;
     background: #436fac;
     padding: 4px 15px;

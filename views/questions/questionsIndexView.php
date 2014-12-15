@@ -13,19 +13,80 @@
     aside#tags{
         margin-top: 20px;
     }
+
     section#questions{
         width:780px;
         float: right;
-        background-color: blue;
-        vertical-align: top;
+        vertical-align: middle;
+    }
+
+    article{
+        height:150px;
         background-color:white;
         border-radius: 10px;
         border: 1px solid #436fac;
         padding:10px;
+        margin-bottom:10px;
     }
 
 </style>
-
+<section id="questions">
+    <article>
+        <header><a href="#"></a>question subject 1</header>
+        <p>
+            <span>usrImg</span>
+            <a href="#">user</a>
+            <span>01/12/2014</span>
+            <span>tagImg</span>
+            <a href="">tag1</a>
+        </p>
+        <div>bottom part of the article do it yourself</div>
+    </article>
+    <article>
+        <header><a href="#"></a>question subject 1</header>
+        <p>
+            <span>usrImg</span>
+            <a href="#">user</a>
+            <span>01/12/2014</span>
+            <span>tagImg</span>
+            <a href="">tag1</a>
+        </p>
+        <div>bottom part of the article do it yourself</div>
+    </article>
+    <article>
+        <header><a href="#"></a>question subject 1</header>
+        <p>
+            <span>usrImg</span>
+            <a href="#">user</a>
+            <span>01/12/2014</span>
+            <span>tagImg</span>
+            <a href="">tag1</a>
+        </p>
+        <div>bottom part of the article do it yourself</div>
+    </article>
+    <article>
+        <header><a href="#"></a>question subject 1</header>
+        <p>
+            <span>usrImg</span>
+            <a href="#">user</a>
+            <span>01/12/2014</span>
+            <span>tagImg</span>
+            <a href="">tag1</a>
+        </p>
+        <div>bottom part of the article do it yourself</div>
+    </article>   
+    <article>
+        <header><a href="#"></a>question subject 1</header>
+        <p>
+            <span>usrImg</span>
+            <a href="#">user</a>
+            <span>01/12/2014</span>
+            <span>tagImg</span>
+            <a href="">tag1</a>
+        </p>
+        <div>bottom part of the article do it yourself</div>
+    </article>
+</section>
 <aside id="categories">
     <h4>Categories</h4>
     <ul>
@@ -74,16 +135,3 @@
     <a href="">tag24</a>
     <a href="">tag25</a>
 </aside>
-<section id="questions">
-    <article>
-        <header><a href="#"></a>question subject 1</header>
-        <p>
-            <span>usrImg</span>
-            <a href="#">user</a>
-            <span>01/12/2014</span>
-            <span>tagImg</span>
-            <a href="">tag1</a>
-        </p>
-        <div>bottom part of the article do it yourself</div>
-    </article>
-</section>
