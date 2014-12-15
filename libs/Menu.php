@@ -25,7 +25,7 @@ class Menu {
     public static function renderMainMenu() {
         $menuItems = Menu::loadMenuItems();
         if ($menuItems) {
-            $mainMenu = '<ul>';
+            $mainMenu = '<nav><ul>';
             foreach ($menuItems as $v) {
                 $path = Config::getValue("paths");
                 $path = $path["url"];
@@ -36,7 +36,7 @@ class Menu {
             } else {
                 $mainMenu .= "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "login/logout\">Logout</a></li>";
             }
-            $mainMenu .= '</ul>';
+            $mainMenu .= '</ul></nav>';
             echo $mainMenu;
         } else {
             echo 'Error loading main menu';

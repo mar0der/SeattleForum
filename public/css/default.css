@@ -1,4 +1,4 @@
-html, body, header, footer, main, aside, div, section, article, p, h, h2, h3, h4, h4, h5, h6, table, tr, td, th{
+html, body, header, footer, nav, main, aside, div, section, article, p, h, h2, h3, h4, h4, h5, h6, table, tr, td, th, ul, li{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -51,18 +51,19 @@ footer {
 }
 
 /* menu */
-header > ul {
-    display:inline-block;
+header > nav {
+    display: inline-block;
+
 }
-header > ul > li{
+header > nav > ul > li{
     display: inline-block;
     list-style: none;
-    margin-right: 5px;
+    margin-right: 7px;
 }
 a.menu-links {
     color: #fff;
     background: #436fac;
-    padding: 4px 15px;
+    padding: 4px 12px;
     text-decoration: none;
     font-size: 15px;
     font-weight: bolder;
@@ -72,6 +73,13 @@ a.menu-links {
 
 a.menu-links:hover {
     background: #E8991A;
+}
+
+/*logged user*/
+.logged-user{
+    float:right; 
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /** Forms */

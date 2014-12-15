@@ -20,6 +20,6 @@
     <body>
         <header>
             <?php Menu::renderMainMenu(); ?>
-	    <div style ="float:right; font-size: 20px"><b> Hello, <?php Menu::renderLoggedUser(); ?>!</b></div>
+	    <div class="logged-user"> Hello, <?php Menu::renderLoggedUser(); ?>!</div>
         </header>
         <main class="clearfix">
