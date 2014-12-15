@@ -50,8 +50,16 @@ footer {
     box-shadow: 2px 2px 2px;
 }
 
-/* Links */
-header > a {
+/* menu */
+header > ul {
+    display:inline-block;
+}
+header > ul > li{
+    display: inline-block;
+    list-style: none;
+    margin-right: 5px;
+}
+a.menu-links {
     color: #fff;
     background: #436fac;
     padding: 4px 15px;
@@ -62,8 +70,8 @@ header > a {
     box-shadow: 3px 3px 3px silver;
 }
 
-header a:hover {
-    background: silver;
+a.menu-links:hover {
+    background: #E8991A;
 }
 
 /** Forms */

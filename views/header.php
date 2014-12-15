@@ -20,11 +20,6 @@
     <body>
         <header>
             <?php Menu::renderMainMenu(); ?>
-            <?php if (Session::get('loggedIn') == false): ?>
-	    <a href="<?php echo $this->url; ?>login">Login</a>
-	    <?php else:; ?>    
-	    <a href="<?php echo $this->url; ?>login/logout">Logout</a>    
-	    <?php endif; ?>
 	    <div style ="float:right; font-size: 20px"><b> Hello, <?php Menu::renderLoggedUser(); ?>!</b></div>
         </header>
         <main class="clearfix">
