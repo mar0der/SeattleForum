@@ -18,14 +18,20 @@ class Questions extends Controller {
     }
 
     public function category() {
+        $category = 'C-Sharp';
         $this->view->title = 'questions/category';
-        $this->model->getAllQuestions(array("category" => 2, "tag" => 0)); //testing for categories
+        $this->view->allTags = $this->model->getAllTags();
+        $this->view->allCategories = $this->model->getAllCategories();
+        $this->view->allQuestions = $this->model->getAllQuestions(array("category" => $category, "tag" => ""));
         $this->view->render('questions/index'); //reusing the view of index
     }
 
     public function tag() {
         $this->view->title = 'questions/tag';
-        $this->model->getAllQuestions(array("category" => 0, "tag" => 3)); //testing for tags
+        $tag = 'testing';
+        $this->view->allTags = $this->model->getAllTags();
+        $this->view->allCategories = $this->model->getAllCategories();
+        $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));
         $this->view->render('questions/index'); //reusing the view of index
     }
 

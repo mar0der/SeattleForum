@@ -41,16 +41,21 @@ for($i = 0; $i < count($this->allQuestions); $i++) {
             <span><?=$this->allQuestions[$i]["avatar"]?></span>
             <a href="#"><?=$this->allQuestions[$i]["username"]?></a>
             <span><?=$this->allQuestions[$i]["create_date"]?></span>
-            <?php/*
+            <span><?=$this->allQuestions[$i]["score"]?></span>
+            <span><?=$this->allQuestions[$i]["visites"]?></span>
+            <span><?=$this->allQuestions[$i]["answers_number"]?></span>
+            <span>Posleden otgowor: <?=$this->allQuestions[$i]["latest_answer"]["username"]?></span>
+            <span> <?=$this->allQuestions[$i]["latest_answer"]["create_date"]?></span>
+            <?php /*
             for($j = 0; $j < count($this->allTags); $j++) {
                 ?>
 <!--?????                <span>tagImg</span>  -->
                 <a href=""><?=$this->allTags["tag_name"]?></a>
             <?php
-            }*///I don't know about this one... it shouldn't be allTags
+            }*/ //I don't know about this one... it shouldn't be allTags
             ?>
         </p>
-        <div><?=$this->allQuestions[$i]["body"]?></div>
+        <div><?php //$this->allQuestions[$i]["body"]?></div>
     </article>
 
     <?php } ?>
@@ -65,39 +70,7 @@ for($i = 0; $i < count($this->allQuestions); $i++) {
         </p>
         <div>bottom part of the article do it yourself</div>
     </article>
-    <article>
-        <header><a href="#"></a>question subject 1</header>
-        <p>
-            <span>usrImg</span>
-            <a href="#">user</a>
-            <span>01/12/2014</span>
-            <span>tagImg</span>
-            <a href="">tag1</a>
-        </p>
-        <div>bottom part of the article do it yourself</div>
-    </article>
-    <article>
-        <header><a href="#"></a>question subject 1</header>
-        <p>
-            <span>usrImg</span>
-            <a href="#">user</a>
-            <span>01/12/2014</span>
-            <span>tagImg</span>
-            <a href="">tag1</a>
-        </p>
-        <div>bottom part of the article do it yourself</div>
-    </article>   
-    <article>
-        <header><a href="#"></a>question subject 1</header>
-        <p>
-            <span>usrImg</span>
-            <a href="#">user</a>
-            <span>01/12/2014</span>
-            <span>tagImg</span>
-            <a href="">tag1</a>
-        </p>
-        <div>bottom part of the article do it yourself</div>
-    </article>-->
+-->
 </section>
 <aside id="categories">
     <h4>Categories</h4>
