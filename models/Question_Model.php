@@ -18,10 +18,39 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
         return $question;
     }
     
-    public function addQuestion($questionId, $creatorId, $body, $tags){
-        $isDone = false;
-        //insert all the stuff into the corrct tables
-        return $isDone;
+    public function addQuestion($questionId, $creatorId, $categoryId, $subject, $body, $tags){
+        $added_question = $this->db->insert("questions",
+            array("question_id" => $questionId,
+                  "creator_id"  => $creatorId,
+                  "category_id" => $categoryId,
+                  "create_date" => date("Y-m-d h:i:s"),
+                  "edit_date"   => date("Y-m-d h:i:s"),
+                  "subject"     => $subject,
+                  "body"        => $body,
+                  "score"       => 0,
+                  "visites"     => 0
+            ));
+
+        foreach($tags as $key => $val) {
+            if($this->tagExists($val)) {
+                $tagId = $this->getTagId($val);
+                $this->db->insert("tags_questions",
+                    array("question_id" => $questionId,
+                          "tag_id"      => $tagId
+                    ));
+            } else {
+                $this->db->insert("tags",
+                    array("tag_name" => $val));
+
+                $tagId = $this->getTagId($val);
+                $this->db->insert("tags_questions",
+                    array("question_id" => $questionId,
+                        "tag_id"      => $tagId
+                    ));
+            }
+        }
+
+        return $added_question; //this is a boolean value
     }
 
     public function editQuestion($questionId){
@@ -31,13 +60,16 @@ FROM questions A WHERE A.id = :qId", array(':qId' => $questionId));
     }
     
     public function saveEditedQuestion($questionId, $body){
-        $isDone = false;
-        return $isDone;
+        $updated = $this->db->update("questions",
+            array("body"      => $body,
+                  "edit_date" => date("Y-m-d h:i:s")
+            ), "id = " . $questionId);
+        return $updated;
     }
     
     public function deleteQuestion($questionId){
-        $isDone = false;
-        return $isDone;
+        $deleted = $this->db->delete("questions", "id = " . $questionId);
+        return $deleted;
     }
     
 //############ private functions ##############
@@ -51,5 +83,20 @@ FROM users A WHERE userid = :userId", array(':userId' => $creatorId));
         $tagsForQuestion = $this->db->select("SELECT A.tab_id as tag_id, A.tag_name
 FROM tags A INNER JOIN tags_questions B ON A.tab_id = B.tag_id WHERE B.question_id = :qId", array(':qId' => $questionId));
         return $tagsForQuestion;
+    }
+
+    private function tagExists($tagName) {
+        $check = $this->db->select("SELECT case when A.counter = 0 then 'yes' else 'no' end as exis FROM
+          (SELECT COUNT(*) as counter FROM tags WHERE tag_name = :tag_name) as A", array(":tag_name" => $tagName));
+
+        if($check[0]["exis"] == "yes")
+            return true;
+        else
+            return false;
+    }
+
+    private function getTagId($tagName) {
+        $tag_id = $this->db->select("SELECT tab_id as tag_id FROM tags WHERE tag_name = :tag_name", array(":tag_name" => $tagName));
+        return $tag_id[0]["tag_id"];
     }
 }
