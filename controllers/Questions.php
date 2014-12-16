@@ -17,8 +17,8 @@ class Questions extends Controller {
         $this->view->render();
     }
 
-    public function category() {
-        $category = 'C-Sharp';
+    public function category($getParams) {
+        $category = $this->sanitize($getParams[0]);
         $this->view->title = 'questions/category';
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
@@ -26,9 +26,9 @@ class Questions extends Controller {
         $this->view->render('questions/index'); //reusing the view of index
     }
 
-    public function tag() {
+    public function tag($getParams) {
         $this->view->title = 'questions/tag';
-        $tag = 'testing';
+        $tag = $this->sanitize($getParams[0]);
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
         $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));

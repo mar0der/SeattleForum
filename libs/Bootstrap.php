@@ -90,7 +90,7 @@ class Bootstrap {
         if($length > 1){
             if(method_exists($this->_controller, $this->_url[1])){
                 if($length == 2){
-                    $this->_controller->{$this->_url[1]}();
+                    $this->_controller->{$this->_url[1]}($params = '');
                 }elseif($length > 2){
                     $this->_controller->{$this->_url[1]}(array_slice($this->_url, 2));
                 }
