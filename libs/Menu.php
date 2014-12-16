@@ -27,10 +27,13 @@ class Menu {
         if ($menuItems) {
             $mainMenu = '<nav><ul>';
             foreach ($menuItems as $v) {
-                $path = Config::getValue("paths");
-                $path = $path["url"];
-                $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($v) . "\"/>" . $v . "</a></li>";
+                if ($v != strtolower($v)) {
+                    $path = Config::getValue("paths");
+                    $path = $path["url"];
+                    $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($v) . "\"/>" . $v . "</a></li>";
+                }
             }
+            //is logged it
             if (Session::get('loggedIn') == false) {
                 $mainMenu .= "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "login\">Login</a></li>";
             } else {
@@ -39,7 +42,7 @@ class Menu {
             $mainMenu .= '</ul></nav>';
             echo $mainMenu;
         } else {
-            echo 'Error loading main menu';
+            echo 'Error loading main menu! Please contact site administrator.';
         }
     }
 

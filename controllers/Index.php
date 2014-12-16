@@ -9,6 +9,6 @@ class Index extends Controller {
     
     function index() {
         $this->view->title = 'Home';
-        $this->view->render();
+        $this->redirect('questions');
     }
 }

@@ -10,16 +10,11 @@ class Questions extends Controller {
     }
 
     public function index() {
-        $this->view->title = 'questions/index go to view';
+        $this->view->title = 'Get your answers here!';
+        $this->model->getAllQuestions(); //testing for all question
         //testing for aside tags and categories
         //$this->model->getAllTags();
         //$this->model->getAllCategories();
-        $this->view->render();
-    }
-
-    public function view() {
-        $this->view->title = 'questions/view';
-        $this->model->getAllQuestions(); //testing for all question
         $this->view->render();
     }
 

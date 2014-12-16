@@ -8,20 +8,20 @@ $acl = array(
     ),
     'user' => array(
         'Index',
-        'Question',
+        'question',
         'Questions',
         'Answer',
         'User',
-        'Dashboard',
+        'dashboard',
         'About'
     ),
     'owner' => array(
         'Index',
-        'Question',
+        'question',
         'Questions',
         'Answer',
         'User',
-        'Dashboard',
+        'dashboard',
         'Admin',
         'About'
     )
