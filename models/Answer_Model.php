@@ -17,7 +17,16 @@ FROM answers A WHERE A.question_id = :qId", array(':qId' => $questionId));
     }
 
     public function addAnswer($questionId, $creatorId, $answerBody) {
-        //???
+        $added = $this->db->insert("answers",
+            array("question_id" => $questionId,
+                  "creator_id"  => $creatorId,
+                  "body"        => $answerBody,
+                  "create_date" => date("Y-m-d h:i:s"),
+                  "edit_date"   => date("Y-m-d h:i:s"),
+                  "score"       => 0
+            ));
+
+        return $added; //this is a boolean value
     }
 
     public function editAnswer($answerId) {
@@ -27,11 +36,15 @@ FROM answers A WHERE A.id = :ansId", array(':ansId' => $answerId));
     }
 
     public function saveEditedAnswer($answerId, $answerBody) {
-
+        $updated = $this->db->update("answers",
+            array("body"      => $answerBody,
+                  "edit_date" => date("Y-m-d h:i:s")), "id = " . $answerId);
+        return $updated;
     }
 
     public function deleteAnswer($answerId) {
-
+        $deleted = $this->db->delete("answers", "id = " . $answerId);
+        return $deleted;
     }
 
     //private functions

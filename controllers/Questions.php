@@ -11,10 +11,9 @@ class Questions extends Controller {
 
     public function index() {
         $this->view->title = 'Get your answers here!';
-        $this->model->getAllQuestions(); //testing for all question
-        //testing for aside tags and categories
-        //$this->model->getAllTags();
-        //$this->model->getAllCategories();
+        $this->view->allQuestions = $this->model->getAllQuestions();
+        $this->view->allTags = $this->model->getAllTags();
+        $this->view->allCategories = $this->model->getAllCategories();
         $this->view->render();
     }
 
