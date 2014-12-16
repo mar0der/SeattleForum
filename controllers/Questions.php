@@ -21,13 +21,13 @@ class Questions extends Controller {
     public function category() {
         $this->view->title = 'questions/category';
         $this->model->getAllQuestions(array("category" => 2, "tag" => 0)); //testing for categories
-        $this->view->render();
+        $this->view->render('questions/index'); //reusing the view of index
     }
 
     public function tag() {
         $this->view->title = 'questions/tag';
         $this->model->getAllQuestions(array("category" => 0, "tag" => 3)); //testing for tags
-        $this->view->render();
+        $this->view->render('questions/index'); //reusing the view of index
     }
 
 }

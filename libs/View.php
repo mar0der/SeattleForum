@@ -23,7 +23,7 @@ class View {
         //loading the header
         require $this->_getHeaderFileName();
         
-        //loading the content
+        //loading the content    
         if(file_exists($controllerActionViewFile))
         {
             require $controllerActionViewFile;
@@ -36,12 +36,13 @@ class View {
     }
 
 //some private functions
-    private function _getViewFileName($name){
-        if($name == ""){
+    private function _getViewFileName($url){  
+        if($url == ""){
             //if the name is not sent we try with the standart naming convention
             $viewName = $this->_viewPath .strtolower($this->_controllerName)."/". strtolower($this->_controllerName) . ucfirst($this->_actionName) . "View.php";
         }else{
-            $viewName = $this->_viewPath . $name . '.php';
+            $url = explode("/", $url);
+            $viewName = $this->_viewPath .strtolower($url[0])."/". strtolower($url[0]) . ucfirst($url[1]) . "View.php";
         }
         return $viewName;
     }
