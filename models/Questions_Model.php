@@ -16,7 +16,7 @@ FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid");
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN tags_questions C ON A.id = C.question_id
-INNER JOIN tags D ON C.tag_id = D.tab_id WHERE D.tag_name = (:tag)", array(':tag' => $params["tag"]));
+INNER JOIN tags D ON C.tag_id = D.tag_id WHERE D.tag_name = (:tag)", array(':tag' => $params["tag"]));
         } elseif($params["tag"] == "") {
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
@@ -50,10 +50,10 @@ WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
     
     public function getAllTags(){
         $tags = $this->db->select("SELECT TEMP.tag_id, TEMP.tag_name FROM (
-SELECT A.tab_id as tag_id, A.tag_name, COUNT(question_id) as orderer
-FROM tags A INNER JOIN tags_questions B ON A.tab_id = B.tag_id
+SELECT A.tag_id as tag_id, A.tag_name, COUNT(question_id) as orderer
+FROM tags A INNER JOIN tags_questions B ON A.tag_id = B.tag_id
 INNER JOIN questions C ON B.question_id = C.id
-GROUP BY A.tab_id, A.tag_name) as TEMP
+GROUP BY A.tag_id, A.tag_name) as TEMP
 ORDER BY TEMP.orderer DESC");
 
         //get all tags and sort them by number of uses

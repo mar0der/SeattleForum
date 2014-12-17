@@ -1,24 +1,5 @@
 <style>
-    aside {
-        width: 180px;
-        float: left;
-        clear: left;
-        background-color:bisque;
-        border-radius: 10px;
-        border: 1px solid #436fac;
-        display: inline-block;
-        padding:10px;
-    }
-    aside#tags{
-        margin-top: 20px;
-    }
-    section#questions{
-        width:780px;
-        float: right;
-        vertical-align: middle;
-    }
     article{
-        height:150px;
         background-color:white;
         border-radius: 10px;
         border: 1px solid #436fac;
@@ -26,35 +7,79 @@
         margin-bottom:10px;
     }
     #profile-left{
-        width: 30%;
+        width: 25%;
         display: inline-block;
     }
     #profile-right{
-        width: 65%;
+        width: 70%;
         display:inline-block;
+        vertical-align: top;
+
+        padding-left: 5px;
+        border-left: 1px solid gray;
     }
-    ul{
-        list-style: none;
+    /**** profile part */
+    header.user-profile-header{
+        font-size: 22px;
+        font-weight: bolder;
     }
-   
+
+    span.user-data{
+        font-weight: normal;
+        font-size: 16px;
+    }
+    span.user-data-header{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .username{
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+    .role{
+        color:#fff;
+        font-size: 14px;
+        padding: 1px 5px;
+        background-color: green;
+        border-radius: 2px;
+        display: inline-block;
+    }
+    .edit-btn{
+        color:#fff;
+        font-size: 14px;
+        padding: 1px 5px;
+        background-color: #436fac;
+        border-radius: 2px;
+        display: inline-block;
+        text-decoration: none;
+    }
+    .delete-btn{
+        color:#fff;
+        font-size: 14px;
+        padding: 1px 5px;
+        background-color: red;
+        border-radius: 2px;
+        display: inline-block;
+        text-decoration: none;
+    }
+
 </style>
 <section id="questions">
     <article>
         <div id="profile-left">
-            <ul>
-                <li><h1><?= @$this->d[0]['first_name']; ?></h1></li>
-                <li><h3>(<?= @$this->d[0]['username']; ?>)</h3></h1>
-                <li><img src="<?= @$this->d[0]['avatar']; ?>" width="150px" height="150px"></li>
-            </ul>
+            <img src="<?= @$this->d[0]['avatar']; ?>" width="150px" height="150px">
+            <div class="username" ><?= @$this->d[0]['first_name'] . " (" . @$this->d[0]['username']; ?>)</div>
+            <div class="role" ><?= @$this->d[0]['role']; ?></div>
+            <a href="/user/edit/1" class = "edit-btn">edit</a>
+            <a href="/user/edit/1" class = "delete-btn">delete</a>
         </div>
         <div id="profile-right">
-            <ul id = "user-data">
-                <li><h1>User Information</h1></li>
-                <li><h4>Registered On: <?= @$this->d[0]['registered_on']; ?></h4></h1>
-                <li><h4>Score: <?= @$this->d[0]['score']; ?><h4></li>
-                <li><h4>Role: <?= @$this->d[0]['role']; ?><h4></li>
-                <li><h4>Last Login: <?= @$this->d[0]['last_login']; ?><h4></li>
-            </ul>
+            <header class="user-profile-header">User Information</header>
+            <span class="user-data-header">Registered On:</span> <span class="user-data"><?= @$this->d[0]['registered_on']; ?></span><br />
+            <span class="user-data-header">Score: </span><span class="user-data"><?= @$this->d[0]['score']; ?></span><br />
+            <span class="user-data-header">Gender: </span><span class="user-data"><?= @$this->d[0]['gender']; ?></span><br />
+            <span class="user-data-header">Last seen: </span><span class="user-data"><?= @$this->d[0]['last_login']; ?></span><br />
         </div>
     </article>
 </section>
@@ -71,7 +96,7 @@
 <aside id="tags">
     <h4>Tags</h4>
     <?php for ($i = 0; $i < count($this->allTags); $i++) { ?>
-        <a href=""><?= @$this->allTags[$i]["tag_name"] ?></a>
+        <a href="/questions/tag/"><?= @$this->allTags[$i]["tag_name"] ?></a>
         <?php
     }
     ?>

@@ -28,7 +28,7 @@ body > header {
     border-bottom: 2px solid #436fac;
     box-shadow: 2px 2px 2px;
 }
-
+/*main site */
 main {
     height: 100%;
     background: #fff;
@@ -36,6 +36,27 @@ main {
     border-left: 1px solid #436fac;
     border-right: 1px solid #436fac;
     box-shadow: 2px 2px 2px;
+}
+
+section#questions{
+    width:780px;
+    float: right;
+    vertical-align: middle;
+}
+
+/** aside */
+aside {
+    width: 180px;
+    float: left;
+    clear: left;
+    background-color:bisque;
+    border-radius: 10px;
+    border: 1px solid #436fac;
+    display: inline-block;
+    padding:10px;
+}
+aside#tags{
+    margin-top: 20px;
 }
 
 footer {
