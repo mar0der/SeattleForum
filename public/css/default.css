@@ -38,7 +38,7 @@ main {
     box-shadow: 2px 2px 2px;
 }
 
-section#questions{
+section#content{
     width:780px;
     float: right;
     vertical-align: middle;
@@ -49,7 +49,7 @@ aside {
     width: 180px;
     float: left;
     clear: left;
-    background-color:bisque;
+    /*background-color:bisque;*/
     border-radius: 10px;
     border: 1px solid #436fac;
     display: inline-block;
@@ -59,6 +59,69 @@ aside#tags{
     margin-top: 20px;
 }
 
+ul.categories li{
+    list-style: none;
+    height:25px;
+}
+
+ul.categories a:hover{
+    color: #fa5a35;
+}
+
+ul.categories a{
+    wdith: 100%;
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+ul.categories span{
+    float:right;
+    color: #FFF;
+    background-color: red;
+    font-family: Arial, sans-serif;
+    line-height: 16px;
+    padding: 0 7px;
+    border-radius: 10px;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+    background: #fa623f;
+    border-color: #fa5a35;
+    background-image: -webkit-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: -moz-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: -o-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: linear-gradient(to bottom, #fc9f8a, #fa623f);
+}
+
+.tags{
+
+    color: #FFF;
+    background-color: red;
+    font-family: Arial, sans-serif;
+    line-height: 21px;
+    padding: 0 7px;
+    border-radius: 10px;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+    background: #fa623f;
+    border-color: #fa5a35;
+    background-image: -webkit-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: -moz-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: -o-linear-gradient(top, #fc9f8a, #fa623f);
+    background-image: linear-gradient(to bottom, #fc9f8a, #fa623f);
+    text-decoration: none;
+    text-decoration: none;
+}
+
+aside > header{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 footer {
     background: #fff;
     color: #000;

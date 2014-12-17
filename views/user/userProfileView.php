@@ -1,4 +1,5 @@
 <style>
+    /**profile style **/
     article{
         background-color:white;
         border-radius: 10px;
@@ -18,7 +19,7 @@
         padding-left: 5px;
         border-left: 1px solid gray;
     }
-    /**** profile part */
+
     header.user-profile-header{
         font-size: 22px;
         font-weight: bolder;
@@ -38,34 +39,68 @@
         margin-bottom: 2px;
     }
     .role{
-        color:#fff;
-        font-size: 14px;
-        padding: 1px 5px;
-        background-color: green;
-        border-radius: 2px;
         display: inline-block;
+        color: #FFF;
+        background-color: red;
+        font-family: Arial, sans-serif;
+        line-height: 16px;
+        padding: 0 7px;
+        border-radius: 10px;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+        border: 1px solid;
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        background: #77cc51;
+        border-color: #59ad33;
+        background-image: -webkit-linear-gradient(top, #a5dd8c, #77cc51);
+        background-image: -moz-linear-gradient(top, #a5dd8c, #77cc51);
+        background-image: -o-linear-gradient(top, #a5dd8c, #77cc51);
+        background-image: linear-gradient(to bottom, #a5dd8c, #77cc51);
+        text-decoration: none;
     }
     .edit-btn{
-        color:#fff;
-        font-size: 14px;
-        padding: 1px 5px;
-        background-color: #436fac;
-        border-radius: 2px;
-        display: inline-block;
+        color: #FFF;
+        background-color: red;
+        font-family: Arial, sans-serif;
+        line-height: 16px;
+        padding: 0 7px;
+        border-radius: 10px;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+        border: 1px solid;
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        background: #faba3e;
+        border-color: #f4a306;
+        background-image: -webkit-linear-gradient(top, #fcd589, #faba3e);
+        background-image: -moz-linear-gradient(top, #fcd589, #faba3e);
+        background-image: -o-linear-gradient(top, #fcd589, #faba3e);
+        background-image: linear-gradient(to bottom, #fcd589, #faba3e);
         text-decoration: none;
     }
     .delete-btn{
-        color:#fff;
-        font-size: 14px;
-        padding: 1px 5px;
+        color: #FFF;
         background-color: red;
-        border-radius: 2px;
-        display: inline-block;
+        font-family: Arial, sans-serif;
+        line-height: 16px;
+        padding: 0 7px;
+        border-radius: 10px;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+        border: 1px solid;
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        background: #fa623f;
+        border-color: #fa5a35;
+        background-image: -webkit-linear-gradient(top, #fc9f8a, #fa623f);
+        background-image: -moz-linear-gradient(top, #fc9f8a, #fa623f);
+        background-image: -o-linear-gradient(top, #fc9f8a, #fa623f);
+        background-image: linear-gradient(to bottom, #fc9f8a, #fa623f);
         text-decoration: none;
+
     }
 
+
 </style>
-<section id="questions">
+<section id="content">
     <article>
         <div id="profile-left">
             <img src="<?= @$this->d[0]['avatar']; ?>" width="150px" height="150px">
@@ -84,19 +119,17 @@
     </article>
 </section>
 <aside id="categories">
-    <h4>Categories</h4>
-    <ul>
+    <header>Categories:</header>
+    <ul class="categories">
         <?php for ($i = 0; $i < count($this->allCategories); $i++) { ?>
-            <li><?= @$this->allCategories[$i]["category_name"] ?><span><?= $this->allCategories[$i]["questions_number"] ?></span></li>
-            <?php
-        }
-        ?>
+            <li><a href="/questions/category/<?= @$this->allCategories[$i]["category_id"] ?>"><?= @$this->allCategories[$i]["category_name"] ?></a><span class="notification"><?= $this->allCategories[$i]["questions_number"] ?></span></li>
+        <?php } ?>
     </ul>
 </aside>
 <aside id="tags">
-    <h4>Tags</h4>
+    <header>Tags:</header>
     <?php for ($i = 0; $i < count($this->allTags); $i++) { ?>
-        <a href="/questions/tag/"><?= @$this->allTags[$i]["tag_name"] ?></a>
+        <a href="/questions/tag/<?= @$this->allTags[$i]["tag_id"] ?>" class="tags"><?= @$this->allTags[$i]["tag_name"] ?></a>
         <?php
     }
     ?>

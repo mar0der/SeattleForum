@@ -1,25 +1,4 @@
 <style>
-    aside {
-        width: 180px;
-        float: left;
-        clear: left;
-        background-color:bisque;
-        border-radius: 10px;
-        border: 1px solid #436fac;
-        display: inline-block;
-        padding:10px;
-    }
-
-    aside#tags{
-        margin-top: 20px;
-    }
-
-    section#questions{
-        width:780px;
-        float: right;
-        vertical-align: middle;
-    }
-
     article{
         height:150px;
         background-color:white;
@@ -29,7 +8,7 @@
         margin-bottom:10px;
     }
 </style>
-<section id="questions">
+<section id="content">
     <form method="post" action="user/edit" enctype="multipart/form-data">
         <fieldset>
             <label for="username">Username</label>
@@ -89,20 +68,18 @@
     </form>
 </section>
 <aside id="categories">
-    <h4>Categories</h4>
-    <ul>
-        <?php for($i = 0; $i < count($this->allCategories); $i++) { ?>
-            <li><?=$this->allCategories[$i]["category_name"]?><span><?=$this->allCategories[$i]["questions_number"]?></span></li>
-        <?php
-        }
-        ?>
+    <header>Categories:</header>
+    <ul class="categories">
+        <?php for ($i = 0; $i < count($this->allCategories); $i++) { ?>
+            <li><a href="/questions/category/<?= @$this->allCategories[$i]["category_id"] ?>"><?= @$this->allCategories[$i]["category_name"] ?></a><span class="notification"><?= $this->allCategories[$i]["questions_number"] ?></span></li>
+        <?php } ?>
     </ul>
 </aside>
 <aside id="tags">
-    <h4>Tags</h4>
-        <?php for($i = 0; $i < count($this->allTags); $i++) { ?>
-            <a href=""><?=$this->allTags[$i]["tag_name"]?></a>
+    <header>Tags:</header>
+    <?php for ($i = 0; $i < count($this->allTags); $i++) { ?>
+        <a href="/questions/tag/<?= @$this->allTags[$i]["tag_id"] ?>" class="tags"><?= @$this->allTags[$i]["tag_name"] ?></a>
         <?php
-        }
-        ?>
+    }
+    ?>
 </aside>
