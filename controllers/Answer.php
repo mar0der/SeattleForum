@@ -22,7 +22,7 @@ class Answer extends Controller {
             if($postData['questionId'] == 0) {
                 if (empty($postData['answerBody'])) {
                     $this->view->response = "The field is empty.";
-                    $this->view->render();
+                    $this->view->render('question/view');
                     die();
                 } else {
                     $body = htmlentities($_POST['answerBody']);
