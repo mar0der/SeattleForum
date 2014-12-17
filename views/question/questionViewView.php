@@ -51,8 +51,29 @@
             </p>
 
         </article>
-</section>
-<section id="answers">
+
+    <script>
+        $(document).ready(function(){
+            $("#button").click(function(){
+                $("#addAnswer").show();
+            });
+
+            $("#addAnswer").click(function(){
+                $("#addAnswer").hide();
+            });
+        });
+    </script>
+    <button id="button">Add answer</button><br /><br />
+    <article style="display: none;" id="addAnswer">
+        <form action="answer/add" method="post">
+            <br/>
+            <label for="answerBody">Your answer:</label>
+            <textarea name="answerBody" id="answerBody"></textarea><br />
+            <input type="hidden" name="questionId" value="<?=$this->questionId?>" />
+            <input type="submit" id="addAnswer" value="Add">
+        </form>
+        <span id="error"><?= @$this->response?></span>
+    </article>
 
     <?php
     for($i = 0; $i < count($this->answers); $i++) {
