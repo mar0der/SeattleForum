@@ -9,6 +9,7 @@ class Question extends Controller {
         }
         $paths = Config::getValue('paths');
         $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
+        $this->answersModel = $this->loadModel("Answer", $paths['models'], $c);
     }
 
     public function index() {
@@ -16,9 +17,17 @@ class Question extends Controller {
         $this->view->render();
     }
 
-    public function view() {
+    public function view($params = '') {
+        if(!empty($params)) {
+            $questionId = (int)$params[0];
+        } else {
+            $this->redirect('/error');
+        }
+        $this->view->answers = $this->answersModel->getAllAnswersForQuestion($questionId);
         $this->view->title = 'question/view';
-        $this->model->getQuestion($questionId);
+        $this->view->question = $this->model->getQuestion($questionId);
+        $this->view->allCategories = $this->questionsModel->getAllCategories();
+        $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->render();
     }
 
