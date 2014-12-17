@@ -35,7 +35,8 @@ class Menu {
             }
             //is logged it
             if (Session::get('loggedIn') == false) {
-                $mainMenu .= "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "login\">Login</a></li>";
+                $mainMenu .= "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "login\">Login</a></li>"
+                        . "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "user/register\">Register</a></li>";
             } else {
                 $mainMenu .= "<li><a class=\"menu-links\" href=\"" . Config::getValue("url") . "login/logout\">Logout</a></li>";
             }

@@ -1,5 +1,4 @@
 <?php
-
 class User_Model extends Model 
 {
 
@@ -8,24 +7,36 @@ class User_Model extends Model
         parent::__construct($c);
     }
     
-    public function addUser($username, $password, $email, $realName="", $gender="", $avatar=""){
-        //use var_dump for debugging//use var_dump for debugging
-        
-        return $isDone;
+    public function addUser($data){
+    	$data['password']= Hash::create('sha256', $data['password'], Config::getValue("salt"));
+    	return ($this->db->insert('users',$data));
+ 		
     }
     
-    public function editUser($userId, $password = "", $email="", $realName = "", $gender="", $avatar=""){
-        //use var_dump for debugging
-        return $isDone;
+    public function saveEditedUser($userId, $password = "", $email="", $realName = "", $gender="", $avatar=""){
+        $data=array(
+        		'password'=> $password,
+    			'email'=> $email,
+    			'first_name'=>$realName,
+    			'gender'=>$gender,
+    			'avatar'=>$avatar
+        			);
+      
+        return ($this->db->update('users', $data, "userid = $userId"));
+        
     }
     
     public function viewUser($userId){
-        // var_dump($outputArra); //use this row to check if the returnet result is what you expect
-        return $outputArray;
+        return ($this->db->select("SELECT username, role, first_name, score,registered_on, last_login, avatar FROM users WHERE userid = :userid", array(':userid' => $userId)));
+    	//return ($this->db->select("SELECT userid, username, role FROM users WHERE userid = :userid", array(':userid' => $userId)));
     }
     
     public function deleteUser($userId){
-        //use var_dump for debugging
+       // var_dump($this->db->delete('mytable', array('userid' => $userId))); 
         return $isDone;
     }
+    public function isUserExist($username){
+    	return ((bool)$this->db->select("SELECT userid, username, role FROM users WHERE username = :username", array(':username' => $username)));
+    }
+   
 }

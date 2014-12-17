@@ -10,7 +10,7 @@ $acl = array(
         'Index',
         'question',
         'Questions',
-        'Answer',
+        'answer',
         'User',
         'dashboard',
         'About'
@@ -19,7 +19,7 @@ $acl = array(
         'Index',
         'question',
         'Questions',
-        'Answer',
+        'answer',
         'User',
         'dashboard',
         'Admin',
