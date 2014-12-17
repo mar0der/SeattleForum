@@ -28,7 +28,6 @@
         padding:10px;
         margin-bottom:10px;
     }
-
 </style>
 <section id="questions">
     <form method="post" action="/user/register" enctype="multipart/form-data">
@@ -71,3 +70,21 @@
         </fieldset>
     </form>
 </section>
+<aside id="categories">
+    <h4>Categories</h4>
+    <ul>
+        <?php for($i = 0; $i < count($this->allCategories); $i++) { ?>
+            <li><?=$this->allCategories[$i]["category_name"]?><span><?=$this->allCategories[$i]["questions_number"]?></span></li>
+        <?php
+        }
+        ?>
+    </ul>
+</aside>
+<aside id="tags">
+    <h4>Tags</h4>
+        <?php for($i = 0; $i < count($this->allTags); $i++) { ?>
+            <a href=""><?=$this->allTags[$i]["tag_name"]?></a>
+        <?php
+        }
+        ?>
+</aside>

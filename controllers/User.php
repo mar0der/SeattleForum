@@ -105,8 +105,8 @@ class User extends Controller {
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
 //Save user`s data
-        if (isset($_POST) && strlen($_POST) > 0) {
-            die('ggg');
+        if (isset($_POST) && count($_POST) > 0) {
+            
             $postData = $this->sanitizeArray($_POST);
             //vd($postData);
             $errors = array();
@@ -120,7 +120,7 @@ class User extends Controller {
             $gender = (int) $postData['gender'];
             $userGender = $genders[$gender];
             $realName = $postData['first-name'];
-
+            vd($postData);
             $avatar = $this->view->dataUser[0]['avatar'];
 
             if ((mb_strlen($realName) < 4 || mb_strlen($realName) > 25) || (preg_match('/\b[a-zA-Z]+\b/', $realName)) == 0) {
