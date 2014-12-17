@@ -21,8 +21,18 @@ class Question extends Controller {
     }
 
     public function ask() {
+        if(!isset($_POST['subject'], $_POST['question_body'], $_POST['tags'])) {
+            $this->view->response = "All fields are required.";
+            $this->view->render();
+        } else {
+            $subject = htmlentities($_POST['subject']);
+            $body = htmlentities($_POST['question_body']);
+            $tagsStr = htmlentities($_POST['question_body']);
+            $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
+            $this->
+            $this->model->addQuestion($creatorId, $categoryId, $subject, $body, $tags);
+        }
         $this->view->title = 'question/ask';
-        $this->model->addQuestion($questionId, $creatorId, $body, $tags);
         $this->view->render();
     }
 

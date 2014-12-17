@@ -18,10 +18,9 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
         return $question;
     }
     
-    public function addQuestion($questionId, $creatorId, $categoryId, $subject, $body, $tags){
+    public function addQuestion($creatorId, $categoryId, $subject, $body, $tags){
         $added_question = $this->db->insert("questions",
-            array("question_id" => $questionId,
-                  "creator_id"  => $creatorId,
+            array("creator_id"  => $creatorId,
                   "category_id" => $categoryId,
                   "create_date" => date("Y-m-d h:i:s"),
                   "edit_date"   => date("Y-m-d h:i:s"),
@@ -30,6 +29,9 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
                   "score"       => 0,
                   "visites"     => 0
             ));
+
+        $questionIdArr = $this->db->select("SELECT MAX(id) as id FROM questions");
+        $questionId = $questionIdArr[0]["id"];
 
         foreach($tags as $key => $val) {
             if($this->tagExists($val)) {
