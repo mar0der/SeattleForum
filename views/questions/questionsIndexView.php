@@ -36,7 +36,7 @@
 for($i = 0; $i < count($this->allQuestions); $i++) {
 ?>
     <article>
-        <header><a href="#"></a><?=$this->allQuestions[$i]["subject"]?></header>
+        <header><a href="question/view/<?=$this->allQuestion[$i]["question_id"]?>"><?=$this->allQuestions[$i]["subject"]?></a></header>
         <p>
             <span><?=$this->allQuestions[$i]["avatar"]?></span>
             <a href="#"><?=$this->allQuestions[$i]["username"]?></a>
