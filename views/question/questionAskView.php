@@ -31,7 +31,7 @@
 
 </style>
 <section id="questions">
-    <form action="index.php?url=question/ask" method="post">
+    <form action="question/ask" method="post">
         <label for="subject">Subject:</label>
         <input type="text" name="subject" id="subject" />
         <br/>
@@ -39,8 +39,10 @@
         <textarea name="questionBody" id="questionBody"></textarea><br />
         <label for="tags">Tags (write them in with ',' between, all spaces will be ignored)</label>
         <input type="text" id="tags" name="tags" /><br />
+        <input type="hidden" name="categoryId" value="<?=$this->categoryId?>" />
         <input type="submit" value="Ask">
     </form>
+    <span id="error"><?= @$this->response?></span>
 </section>
 <aside id="categories">
     <h4>Categories</h4>
