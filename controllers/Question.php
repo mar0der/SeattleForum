@@ -42,7 +42,7 @@ class Question extends Controller {
                 } else {
                     $subject = htmlentities($_POST['subject']);
                     $body = htmlentities($_POST['question_body']);
-                    $tagsStr = htmlentities($_POST['question_body']);
+                    $tagsStr = htmlentities($_POST['tags']);
                     $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
                     $this->model->addQuestion(Session::get('userid'), $postData['categoryId'], $subject, $body, $tags);
                 }

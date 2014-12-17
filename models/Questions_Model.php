@@ -32,6 +32,7 @@ WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
         foreach($questions as $key => $val) {
             $questions[$key]["latest_answer"] = $this->getLatestAnswer($questions[$key]["question_id"]);
             $questions[$key]["answers_number"] = $this->getNumberOfAnswers($questions[$key]["question_id"]);
+            $questions[$key]["tags"] = $this->getTagsForEachQuestion($questions[$key]["question_id"]);
         }
 //        echo "<pre>".var_dump(json_encode($questions))."</pre>";
 //        var_dump($questions); // debug with this
@@ -77,5 +78,11 @@ FROM questions as A INNER JOIN users B ON A.creator_id = B.userid WHERE A.id = :
     private function getNumberOfAnswers($questionId) {
         $result = $this->db->select("SELECT COUNT(*) as counter FROM answers WHERE question_id = :q_id", array(':q_id' => $questionId));
         return $result[0]["counter"];
+    }
+
+    private function getTagsForEachQuestion($questionId) {
+        $result = $this->db->select("SELECT distinct A.tag_id, A.tag_name
+FROM tags A INNER JOIN tags_questions B ON A.tag_id = B.tag_id WHERE B.question_id = :qId", array(':qId' => $questionId));
+        return $result;
     }
 }
