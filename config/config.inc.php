@@ -1,7 +1,9 @@
 <?php
 //PATHS AND DEFAULT FILES
-$c['siteName'] = 'forum.peterpetkov.com';
+$c['siteName'] = 'Seattle Forum';
 $c['paths']['url'] = 'http://forum.petarpetkov.com/';
+$c['paths']['avatarFolder'] = '/var/www/seattleforum/public/images/avatars/';
+$c['paths']['avatarUrl'] = $c['paths']['url'].'images/avatars/';
 $c['paths']['libs'] = '../libs/';
 $c['paths']['controllers'] = '../controllers/';
 $c['paths']['models'] = '../models/';
