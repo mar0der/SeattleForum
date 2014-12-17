@@ -53,25 +53,51 @@
         color:gray;
     }
 
+    span.tags-display a{
+        text-decoration: none;
+        font-size: 14px;
+        color:#436fac;
+    }
+    div.counters{
+        height: 60px;
+        width:60px;
+        display: inline-block;
+
+    }
+    div.counters div{
+        height: 25px;
+        width:98%;
+        margin-top: 10px;
+        text-align: center;
+    }
+    div.counters div:nth-child(1){
+         border-bottom: 1px solid #000;
+    }
 </style>
 <section id="content">
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
         <article>
-            <header class="question"><a href="question/view/<?= $this->allQuestion[$i]["question_id"] ?>"><?= $this->allQuestions[$i]["subject"] ?></a></header>
+            <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
-                <span class="username-icon" ></span><a href="#"><?= $this->allQuestions[$i]["username"] ?></a>
-                <span class="added-time-icon" ></span><a href="#"><?= $this->allQuestions[$i]["create_date"] ?></a>
-                <span class="tags-icon" ></span><a href="#"><?= $this->allQuestions[$i]["create_date"] ?></a>
-            </p>
-            <br />
-            <span><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Гласа</div></span>
-            <span><?= $this->allQuestions[$i]["visites"] ?></span>
-            <span><?= $this->allQuestions[$i]["answers_number"] ?></span>
-            <span>Posleden otgowor: <?= $this->allQuestions[$i]["latest_answer"]["username"] ?></span>
-            <span> <?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span>
+                <span class="username-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["username"] ?></a>
+                <span class="added-time-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["create_date"] ?></a>
+                <span class="tags-icon" ></span>
+                <span class="tags-display">
+                    <?php
+                    for ($j = 0; $j < count($this->allQuestions[0]["tags"]); $j++) {
+                        echo "<a href=\"/question/tag/" . $this->allQuestions[0]["tags"][$j]['tag_id'] . "\">" . $this->allQuestions[0]["tags"][$j]["tag_name"] . "&nbsp;</a>";
+                    }
+                    ?>
+                </span>
+                <br />
+            <div class="counters"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
+            <div class="counters"><div><?= $this->allQuestions[$i]["visites"] ?></div> <div>Visits</div></div>
+            <div class="counters"><div><?= $this->allQuestions[$i]["answers_number"] ?></div> <div>Answers</div></div>
+            <!--<span>Posleden otgowor: <?= $this->allQuestions[$i]["latest_answer"]["username"] ?></span>
+            <span> <?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span> -->
 
-            <div><?php //$this->allQuestions[$i]["body"]       ?></div>
+            <div><?php //$this->allQuestions[$i]["body"]             ?></div>
         </article>
 
     <?php } ?>
