@@ -31,9 +31,8 @@ class User_Model extends Model
     	//return ($this->db->select("SELECT userid, username, role FROM users WHERE userid = :userid", array(':userid' => $userId)));
     }
     
-    public function deleteUser($userId){
-       // var_dump($this->db->delete('mytable', array('userid' => $userId))); 
-        return $isDone;
+    public function deleteUser($userId){    
+        return $this->db->delete('users', array('userid' => $userId)); 
     }
     public function isUserExist($username){
     	return ((bool)$this->db->select("SELECT userid, username, role FROM users WHERE username = :username", array(':username' => $username)));

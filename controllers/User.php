@@ -12,7 +12,7 @@ class User extends Controller {
     }
 
     public function register() {
-        $this->view->title = 'Register to our forum!';
+        $this->view->title = Config::getValue('siteName') . ' - Register to our forum!';
         mb_internal_encoding('UTF-8');
         if ($_POST && isset($_POST['gender'])) {
             $errors = array();
@@ -84,7 +84,6 @@ class User extends Controller {
                 if ($this->model->addUser($data)) {
                     $this->redirect('/questions');
                 } else {
-
                     $this->redirect('/error');
                 }
             } else {
@@ -99,31 +98,46 @@ class User extends Controller {
     }
 
     public function edit() {
-        $this->view->title = 'user/edit profile';
+        $this->view->title = Config::getValue('siteName') . ' - Edit Profile';
         $this->model->saveEditedUser(4, "pass", "afaf@faf.com", "realname", "user", "male", "avatar"); //this will call edit function and edit user 1 
         $this->view->render();
     }
 
     public function profile($getParams = '') {
-        $this->view->title = 'User Profile';
-        if (isset($getParams) && $getParams != '') {
+        $this->view->title = Config::getValue('siteName') . ' - User Profile';
+        if ($getParams != NULL) {
             $userId = $this->sanitize($getParams[0]);
         } else {
             $userId = Session::get('userid');
-            if($userId == 0){
+            if ($userId == 0) {
                 $this->redirect('/questions');
             }
         }
         $paths = Config::getValue("paths");
-        $this->view->d = $this->model->viewUser($userId); //this will get the details for user 1
+        $this->view->d = $this->model->viewUser($userId);
         $this->view->d[0]["avatar"] = $paths["avatarUrl"] . $this->view->d[0]["avatar"];
         $this->view->render();
     }
 
-    public function delete() {
-        //add credentials check
-        $this->view->title = 'view/profile';
-        $this->model->deleteUser(1); //this delete user 1
+    public function delete($getParams = '') {
+        if ($getParams != NULL && Session::get('userid') != $getParams[0] && Session::get('role') == 'owner') {
+            $userId = $this->sanitize($getParams[0]);
+        } else {
+            $this->redirect('/error/notauth');
+        }
+
+        if($this->model->deleteUser($userId)){
+            $this->view->message = "You have successfuly deleted user with id ". $userId;
+            $this->view->render('user/success');
+            die();
+        }  else {
+            $this->redirect('/error/notauth');
+        }
+    }
+    
+    public function success($message){
+        $this->view->title =  Config::getValue('siteName') . " - ".$message;
+        $this->view->message = $message;
         $this->view->render();
     }
 
