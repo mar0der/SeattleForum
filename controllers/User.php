@@ -4,6 +4,8 @@ class User extends Controller {
 
     function __construct($c, $controllerName, $actionName) {
         parent::__construct($c, $controllerName, $actionName);
+        $paths = Config::getValue('paths');
+        $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
     }
 
     public function index() {
@@ -12,6 +14,8 @@ class User extends Controller {
     }
 
     public function register() {
+        $this->view->allCategories = $this->questionsModel->getAllCategories();
+        $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->title = Config::getValue('siteName') . ' - Register to our forum!';
         mb_internal_encoding('UTF-8');
         if ($_POST && isset($_POST['gender'])) {
@@ -98,6 +102,8 @@ class User extends Controller {
     }
 
     public function edit($getParams = NULL) {
+        $this->view->allCategories = $this->questionsModel->getAllCategories();
+        $this->view->allTags = $this->questionsModel->getAllTags();
 //Save user`s data
         if (isset($_POST) && strlen($_POST) > 0) {
             die('ggg');
@@ -178,6 +184,9 @@ class User extends Controller {
     }
 
     public function profile($getParams = '') {
+
+        $this->view->allCategories = $this->questionsModel->getAllCategories();
+        $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->title = Config::getValue('siteName') . ' - User Profile';
         if ($getParams != NULL) {
             $userId = $this->sanitize($getParams[0]);
