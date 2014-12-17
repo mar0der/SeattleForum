@@ -86,48 +86,19 @@ class Bootstrap {
      */
     private function _callControllerMethod() {
         $length = count($this->_url);
-
-        if($length > 1){
-            if(method_exists($this->_controller, $this->_url[1])){
-                if($length == 2){
+        if ($length > 1) {
+            if (method_exists($this->_controller, $this->_url[1])) {
+                if ($length == 2) {
                     $this->_controller->{$this->_url[1]}($params = '');
-                }elseif($length > 2){
+                } elseif ($length > 2) {
                     $this->_controller->{$this->_url[1]}(array_slice($this->_url, 2));
                 }
-            }else{
+            } else {
                 $this->_error();
             }
-        } else{
+        } else {
             $this->_controller->index();
         }
-        
-
-//        // Determine what to load
-//        switch ($length) {
-//            case 5:
-//                //Controller->Method(Param1, Param2, Param3)
-//                $this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4]);
-//                break;
-//
-//            case 4:
-//                //Controller->Method(Param1, Param2)
-//                $this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3]);
-//                break;
-//
-//            case 3:
-//                //Controller->Method(Param1, Param2)
-//                $this->_controller->{$this->_url[1]}($this->_url[2]);
-//                break;
-//
-//            case 2:
-//                //Controller->Method(Param1, Param2)
-//                $this->_controller->{$this->_url[1]}();
-//                break;
-//
-//            default:
-//                $this->_controller->index();
-//                break;
-//        }
     }
 
     /**
