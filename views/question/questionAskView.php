@@ -14,7 +14,7 @@
         height: 30px;
         line-height:15px;
         width: 550px;
-        padding: 0px 0px 0px 10px; 
+        padding: 0px 0px 0px 10px;
         margin-left:0;
         margin-top: 2px;
         border: 1px solid #436fac;
@@ -35,7 +35,7 @@
         margin-top: 10px;
         padding: 4px 25px;
     }
-    
+
     #categoriesSelect{
         width:560px;
         margin-left:0;
@@ -54,7 +54,7 @@
             <textarea name="questionBody" id="questionBody"></textarea>
             <br />
             <label for="categories">Categories:</label>
-            <select id="categoriesSelect">
+            <select id="categoriesSelect" name="categoryId">
                 <?php for($i = 0; $i < count($this->allCategories); $i++) {
                     echo "<option value=\"".$this->allCategories[$i]['category_id']."\">".$this->allCategories[$i]['category_name']."</option>";
                 } ?>
@@ -62,7 +62,6 @@
             <br/>
             <label for="tags">Tags:</label>
             <input type="text" id="tags" name="tags" placeholder="Comma separated"/><br />
-            <input type="hidden" name="categoryId" value="<?= $this->categoryId ?>" />
             <label for="submit"></label>
             <input type="submit" value="Ask">
         </form>
@@ -81,7 +80,7 @@
     <header>Tags:</header>
     <?php for ($i = 0; $i < count($this->allTags); $i++) { ?>
         <a href="/questions/tag/<?= @$this->allTags[$i]["tag_id"] ?>" class="tags"><?= @$this->allTags[$i]["tag_name"] ?></a>
-        <?php
+    <?php
     }
     ?>
 </aside>
