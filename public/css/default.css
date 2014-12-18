@@ -180,18 +180,17 @@ form label {
     text-align: right; 
 }
 
-form input, form select {
-    background-color: silver;
+form input, form select, textArea {
     font-size: 14px;
     width: auto;
-    margin: 5px 0 0 10px;
+    margin: 10px 0 0 10px;
     border: 1px solid gray;
     padding: 2px;
     padding-left: 10px;
     padding-right: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 

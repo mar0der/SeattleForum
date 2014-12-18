@@ -8,18 +8,14 @@
         margin-bottom:10px;
     }
 
-    textarea{
-        height:200px;
-        width: 400px;
-        padding-top: 10px;
-    }
 
-    .smart-green input[type="text"], .smart-green input[type="email"], .smart-green textarea, .smart-green select {
+    input[type="text"], textarea, select {
         color: #555;
         height: 30px;
         line-height:15px;
-        width: 100%;
-        padding: 0px 0px 0px 10px;
+        width: 70%;
+        padding: 0px 0px 0px 10px; 
+        margin-left:0;
         margin-top: 2px;
         border: 1px solid #E5E5E5;
         background: #FBFBFB;
@@ -27,6 +23,16 @@
         -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
         box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
         font: normal 14px/14px Arial, Helvetica, sans-serif;
+    }
+
+    textarea{
+        height:200px;
+        padding-top: 10px;
+    }
+    input[type=submit]{
+        margin-left:0px;
+        margin-top: 5px;
+        padding: 4px 25px;
     }
 
 </style>
@@ -39,9 +45,10 @@
             <label for="questionBody">Your question:</label>
             <textarea name="questionBody" id="questionBody"></textarea>
             <br />
-            <label for="tags">Tags (, separated):</label>
-            <input type="text" id="tags" name="tags" /><br />
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags" placeholder="Comma separated"/><br />
             <input type="hidden" name="categoryId" value="<?= $this->categoryId ?>" />
+            <label for="submit"></label>
             <input type="submit" value="Ask">
         </form>
         <span id="error"><?= @$this->response ?></span>
