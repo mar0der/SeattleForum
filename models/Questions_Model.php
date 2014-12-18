@@ -75,6 +75,13 @@ ORDER BY TEMP.orderer DESC");
             )
         );
 
+//        $this->db->update("users",
+//            array("user_voting" => $userid,
+//                "question_id_voted" => $questionId,
+//                "answer_id_voted" => $answerId
+//            )
+//        );
+
         $laterScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
         return $laterScore[0]["score"];
     }

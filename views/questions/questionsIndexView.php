@@ -110,7 +110,7 @@
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
         <article>
-            <?php if(!isset($this->hasVoted) && $this->hasVoted == 0) { ?>
+            <?php if(!isset($this->hasVoted) || @$this->hasVoted == 0) { ?>
                 <a href="#" id="voteUp" onclick="voteUp(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteUp</a>
                 <a href="#" id="voteDown" onclick="voteDown(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteDown</a>
             <?php
