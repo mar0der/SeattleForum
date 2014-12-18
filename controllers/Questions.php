@@ -18,7 +18,7 @@ class Questions extends Controller {
     }
 
     public function category($getParams) {
-        $category = $this->sanitize($getParams[0]);
+        $category = (int)$getParams[0];
         $this->view->title = 'questions/category';
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();

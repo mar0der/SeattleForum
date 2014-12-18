@@ -21,12 +21,12 @@ INNER JOIN tags D ON C.tag_id = D.tag_id WHERE D.tag_name = (:tag)", array(':tag
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN categories C ON A.category_id = C.id
-WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
+WHERE C.id = :catId", array(':catId' => $params["category"]));
         } else {
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN categories C ON A.category_id = C.id
-WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
+WHERE C.id = :catId", array(':catId' => $params["category"]));
         }
 
         foreach($questions as $key => $val) {
