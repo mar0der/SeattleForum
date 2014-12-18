@@ -99,13 +99,13 @@
         <article>
             <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
-                <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?><"><?= @$this->allQuestions[$i]["username"] ?></a>
+                <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?>"><?= @$this->allQuestions[$i]["username"] ?></a>
                 <span class="added-time-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["create_date"] ?></a>
                 <span class="tags-icon" ></span>
                 <span class="tags-display">
                     <?php
                     for ($j = 0; $j < count($this->allQuestions[0]["tags"]); $j++) {
-                        echo "<a href=\"/question/tag/" . $this->allQuestions[0]["tags"][$j]['tag_id'] . "\">" . $this->allQuestions[0]["tags"][$j]["tag_name"] . "&nbsp;</a>";
+                        echo "<a href=\"/questions/tag/" . $this->allQuestions[0]["tags"][$j]['tag_id'] . "\">" . $this->allQuestions[0]["tags"][$j]["tag_name"] . "&nbsp;</a>";
                     }
                     ?>
                 </span>
@@ -114,7 +114,7 @@
             <div class="counters"><div><?= $this->allQuestions[$i]["visites"] ?></div> <div>Visits</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["answers_number"] ?></div> <div>Answers</div></div>
             <div class="last-answer"> Last answer:
-                <span><a href="/user/profile/<?= @$this->allQuestions[$i]["question_id"] ?> " class = "last-answerer"><?= $this->allQuestions[$i]["latest_answer"]["username"] ?></a></span>
+                <span><a href="/user/profile/<?= @$this->allQuestions[$i]["latest_answer"]["userid"] ?> " class = "last-answerer"><?= $this->allQuestions[$i]["latest_answer"]["username"] ?></a></span>
                 on <span class="last-answer-time"><?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span>
             </div>
         </article>
