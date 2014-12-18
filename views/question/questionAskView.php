@@ -1,6 +1,6 @@
 <style>
     article{
-        height:150px;
+
         background-color:white;
         border-radius: 10px;
         border: 1px solid #436fac;
@@ -8,20 +8,29 @@
         margin-bottom:10px;
     }
 
+    textarea{
+        height:200px;
+        width: 400px;
+        padding-top: 10px;
+    }
+
 </style>
 <section id="content">
-    <form action="question/ask" method="post">
-        <label for="subject">Subject:</label>
-        <input type="text" name="subject" id="subject" />
-        <br/>
-        <label for="questionBody">Your question:</label>
-        <textarea name="questionBody" id="questionBody"></textarea><br />
-        <label for="tags">Tags (write them in with ',' between, all spaces will be ignored)</label>
-        <input type="text" id="tags" name="tags" /><br />
-        <input type="hidden" name="categoryId" value="<?=$this->categoryId?>" />
-        <input type="submit" value="Ask">
-    </form>
-    <span id="error"><?= @$this->response?></span>
+    <article>
+        <form action="question/ask" method="post">
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" id="subject" />
+            <br/>
+            <label for="questionBody">Your question:</label>
+            <textarea name="questionBody" id="questionBody"></textarea>
+            <br />
+            <label for="tags">Tags (, separated):</label>
+            <input type="text" id="tags" name="tags" /><br />
+            <input type="hidden" name="categoryId" value="<?= $this->categoryId ?>" />
+            <input type="submit" value="Ask">
+        </form>
+        <span id="error"><?= @$this->response ?></span>
+    </article>
 </section>
 <aside id="categories">
     <header>Categories:</header>
