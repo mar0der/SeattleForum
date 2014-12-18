@@ -60,6 +60,28 @@ ORDER BY TEMP.orderer DESC");
         //get all tags and sort them by number of uses
         return $tags;
     }
+
+    public function votePlus($questionId) {
+        $initialScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
+        $initialScore[0]["score"]++;
+        $this->db->update("questions",
+            array("score"      => $initialScore[0]["score"],
+            ), "id = " . $questionId);
+
+        $laterScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
+        return $laterScore[0]["score"];
+    }
+
+    public function voteMinus($questionId) {
+        $initialScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
+        $initialScore[0]["score"]--;
+        $this->db->update("questions",
+            array("score"      => $initialScore[0]["score"],
+            ), "id = " . $questionId);
+
+        $laterScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
+        return $laterScore[0]["score"];
+    }
     
 // private functions. You can`t call them from outside of this model
     private function numberOfQuestionsInCategory($categoryId){

@@ -96,8 +96,14 @@
 <script>
     $(document).ready(function() {
         $("#voteUp").click(function() {
-            $.post("questions/ajaxvote", { vote: "1" }, function(data) {
-                $("#result").html(data);
+            $.post("questions/ajaxvote", { vote: "1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?> }, function(data) {
+                $("#scoring").html(data);
+            });
+        });
+
+        $("#voteDown").click(function() {
+            $.post("questions/ajaxvote", { vote: "-1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?> }, function(data) {
+                $("#scoring").html(data);
             });
         });
     });
@@ -121,7 +127,7 @@
                     ?>
                 </span>
                 <br />
-            <div class="counters"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
+            <div class="counters" id="scoring"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["visites"] ?></div> <div>Visits</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["answers_number"] ?></div> <div>Answers</div></div>
             <div class="last-answer"> Last answer:
