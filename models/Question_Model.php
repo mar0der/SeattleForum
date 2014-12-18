@@ -17,6 +17,15 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
 
         return $question;
     }
+
+    public function addVisit($questionId) {
+        $visitsArr = $this->db->select("SELECT visites FROM questions WHERE id = :qId", array(':qId' => $questionId));
+        $visits = $visitsArr[0]["visites"];
+        $visits++;
+        $this->db->update("questions",
+            array("visites" => $visits
+            ), "id = " . $questionId);
+    }
     
     public function addQuestion($creatorId, $categoryId, $subject, $body, $tags){
         $added_question = $this->db->insert("questions",
