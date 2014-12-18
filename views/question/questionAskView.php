@@ -76,7 +76,7 @@
     <ul class="categories">
         <?php for ($i = 0; $i < count($this->allCategories); $i++) { ?>
             <li><a href="/questions/category/<?= @$this->allCategories[$i]["category_id"] ?>"><?= @$this->allCategories[$i]["category_name"] ?></a><span class="notification"><?= $this->allCategories[$i]["questions_number"] ?></span></li>
-<?php } ?>
+        <?php } ?>
     </ul>
 </aside>
 <aside id="tags">

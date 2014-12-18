@@ -185,7 +185,7 @@
     </article>
 
     <article style="display:none;" id="addAnswer">
-        <form action="answer/add" method="post">
+        <form action="/answer/add" method="post">
             <br/>
             <label for="answerBody">Your answer:</label>
             <textarea name="answerBody" id="answerBody"></textarea><br />

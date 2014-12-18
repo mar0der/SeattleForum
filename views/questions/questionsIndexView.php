@@ -110,9 +110,9 @@
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
         <article>
-                <a href="#" id="voteUp" onclick="voteUp(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteUp</a>
+           <!--     <a href="#" id="voteUp" onclick="voteUp(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteUp</a>
                 <a href="#" id="voteDown" onclick="voteDown(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteDown</a>
-            <div id="result"></div>
+            <div id="result"></div> -->
             <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
                 <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?>"><?= @$this->allQuestions[$i]["username"] ?></a>

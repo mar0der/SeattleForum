@@ -4,9 +4,9 @@ class Answer extends Controller {
 
     function __construct($c, $controllerName, $actionName) {
         parent::__construct($c, $controllerName, $actionName);
-        if (!Auth::isAuth(get_class())) {
-            header('location: ../error/notauth');
-        }
+//        if (!Auth::isAuth(get_class())) {
+//            header('location: ../error/notauth');
+//        }
         $paths = Config::getValue('paths');
         $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
     }
@@ -17,7 +17,7 @@ class Answer extends Controller {
     }
 
     public function add($params = '') {
-        if(isset($_POST) && count($_POST) > 0) {
+          if(isset($_POST) && count($_POST) > 0) {
             $postData = $this->sanitizeArray($_POST);
             if($postData['questionId'] == 0) {
                 if (empty($postData['answerBody'])) {
@@ -27,17 +27,13 @@ class Answer extends Controller {
                 } else {
                     $body = htmlentities($_POST['answerBody']);
                     $this->model->addAnswer($postData['questionId'], Session::get('userid'), $body);
+                    $this->redirect('/questions');
                 }
             } else {
                 $this->redirect('/error');
             }
-        }
+        } 
         $this->view->title = 'Adding an answer';
-        if(!empty($params)) {
-            $this->view->questionId = (int)$params[0];
-        } else {
-            $this->redirect('/error');
-        }
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->render();
