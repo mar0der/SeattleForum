@@ -1,12 +1,12 @@
 <style>
     article{
-        height:150px;
         background-color:white;
         border-radius: 10px;
         border: 1px solid #436fac;
         padding:10px;
         margin-bottom:10px;
     }
+
     header.question{
         font-size: 20px;
     }
@@ -14,19 +14,24 @@
         text-decoration: none;
         color:#436fac;
     }
+
+    p.navigation{
+        padding-top:10px;
+        padding-bottom: 10px;
+        border-bottom: solid 1px appworkspace;
+    }
     span.username-icon{
-        background: url('../images/icons/question-icons.png') 0 0;
+        background: url('/images/icons/question-icons.png') 0 0;
         padding-left: 25px;
     }
     span.added-time-icon{
-        background: url('../images/icons/question-icons.png') 42px 0;
+        background: url('/images/icons/question-icons.png') 42px 0;
         padding-left: 20px;
     }
 
     span.tags-icon{
-        background: url('../images/icons/question-icons.png') 84px 0;
+        background: url('/images/icons/question-icons.png') 84px 0;
         padding-left: 20px;
-        background-color: green;
     }
 
     span.username-icon + a{
@@ -52,53 +57,110 @@
         font-size: 14px;
         color:#436fac;
     }
+    div.counters{
+        height: 60px;
+        width:60px;
+        display: inline-block;
+
+    }
+    div.counters div{
+        height: 25px;
+        width:98%;
+        margin-top: 10px;
+        text-align: center;
+    }
+    div.counters div:nth-child(1){
+        border-bottom: 1px solid #000;
+    }
+
+    div.last-answer{
+        display: inline-block;
+        height: 40px;
+        border-left: 1px solid gray;
+        margin-top: 15px;
+        vertical-align: top;
+        padding-left:10px;
+        padding-top:10px;
+    }
+    a.last-answerer{
+        text-decoration: none;
+        color: #436fac;
+    }
+
+    span.last-answer-time{
+        font-size: 14px;
+        color:gray; 
+    }
+    /* question post style */
+    #profile-left{
+        width: 15%;
+        display: inline-block;
+        padding:10px;
+    }
+    #profile-right{
+        width: 84%;
+        display:inline-block;
+        margin-top:10px;
+        vertical-align: top;
+        padding-left: 5px;
+        border-left: 1px solid gray;
+    }
+    .add-btn{
+        color: #FFF;
+        margin-left: 15px;
+        background-color: red;
+        font-family: Arial, sans-serif;
+        line-height: 16px;
+        padding: 0 7px;
+        border-radius: 10px;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+        border: 1px solid;
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+        background: #faba3e;
+        border-color: #f4a306;
+        background-image: -webkit-linear-gradient(top, #fcd589, #faba3e);
+        background-image: -moz-linear-gradient(top, #fcd589, #faba3e);
+        background-image: -o-linear-gradient(top, #fcd589, #faba3e);
+        background-image: linear-gradient(to bottom, #fcd589, #faba3e);
+        text-decoration: none;
+    }
 </style>
+<script>
+    $(document).ready(function() {
+        $("#button").click(function() {
+            $("#addAnswer").toggle("blind", {}, 500);
+        });
+
+        $("#submitAnswer").click(function() {
+            $("#addAnswer").hide("blind", {}, 500);
+        });
+    });
+</script>
 <section id="content">
     <article>
         <header class="question"><a href="#"><?= $this->question[0]["subject"] ?></a></header>
-                <span class="username-icon" ></span><a href="/user/profile/<?= $this->question[0]["creator"][0]["user_id"] ?>"><?= $this->question[0]["creator"][0]["username"] ?></a>
-                <span class="added-time-icon" ></span><a href="#"><?= @$this->question[$i]["create_date"] ?></a>
-                <span class="tags-icon" ></span>
-                <span class="tags-display">
-                    <?php
-                    for ($j = 0; $j < count($this->question[0]["tags"]); $j++) {
-                        echo "<a href=\"/questions/tag/" . $this->question[0]["tags"][$j]['tag_id'] . "\">" . $this->question[0]["tags"][$j]["tag_name"] . "&nbsp;</a>";
-                    }
-                    ?>
-                </span>
-                <br />
-
-
-                <span><?= $this->question[0]["subject"] ?></span>
-                <span><?= $this->question[0]["creator"][0]["avatar"] ?></span>
-                <a href="#"><span><?= $this->question[0]["creator"][0]["username"] ?></span></a>
-                <span><?= $this->question[0]["creator"][0]["score"] ?></span>
-                <span><?= $this->question[0]["create_date"] ?></span>
-                <span><?= $this->question[0]["category_name"] ?></span>
-                <span><?= $this->question[0]["score"] ?></span>
-        </header>
-        <p>
-            <span><?= $this->question[0]["body"] ?></span>
-            <?php for ($j = 0; $j < count($this->question[0]["tags"]); $j++) { ?>
-                <span><?= $this->question[0]["tags"][$j]["tag_name"] ?>&nbsp;</span>
-            <?php }
-            ?>
+        <p class = "navigation">
+            <span class="username-icon" ></span><a href="/user/profile/<?= $this->question[0]["creator"][0]["user_id"] ?>"><?= $this->question[0]["creator"][0]["username"] ?></a>
+            <span class="added-time-icon" ></span><a href="#"><?= @$this->question[0]["create_date"] ?></a>
+            <span class="tags-icon" ></span>
+            <span class="tags-display">
+                <?php
+                for ($j = 0; $j < count($this->question[0]["tags"]); $j++) {
+                    echo "<a href=\"/questions/tag/" . $this->question[0]["tags"][$j]['tag_id'] . "\">" . $this->question[0]["tags"][$j]["tag_name"] . "&nbsp;</a>";
+                }
+                ?>
+            </span>
         </p>
-
+        <div id="profile-left">
+            <img src="<?= $this->question[0]["creator"][0]["avatar"] ?>" width="100px" height="100px">
+            <div class="username" ><?= $this->question[0]["score"] ?></span></div>
+        </div>
+        <div id="profile-right">
+            <p class="post-body"><?= $this->question[0]["body"] ?></p>
+        </div>
+        <a href="#" id="button" class = "add-btn">Add answer</a>
     </article>
-
-    <script>
-        $(document).ready(function() {
-            $("#button").click(function() {
-                $("#addAnswer").toggle("blind", {}, 500);
-            });
-
-            $("#submitAnswer").click(function() {
-                $("#addAnswer").hide("blind", {}, 500);
-            });
-        });
-    </script>
-    <button id="button">Add answer</button><br /><br />
     <article style="display:none;" id="addAnswer">
         <form action="answer/add" method="post">
             <br/>

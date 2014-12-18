@@ -27,6 +27,8 @@ class Question extends Controller {
         $this->view->title = 'question/view';
         $this->model->addVisit($questionId);
         $this->view->question = $this->model->getQuestion($questionId);
+        $paths = Config::getValue('paths');
+        $this->view->question[0]['creator'][0]['avatar'] = $paths['avatarUrl'].$this->view->question[0]['creator'][0]['avatar'];
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->render();

@@ -1,6 +1,7 @@
 <?php
 //error_reporting(1);
 //for debugging only use v($something) to faster do <pre> var_dump() </pre>. comment next row for production
+header('Content-Type: text/html; charset=utf-8'); 
 require '../libs/Debug.php';
 require '../libs/Config.php';
 require '../libs/Auth.php';

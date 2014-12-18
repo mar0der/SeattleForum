@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="windows-1251">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?= (isset($this->title)) ? $this->title : 'MVC'; ?></title>
         <link rel="stylesheet" href="<?php echo $this->url; ?>css/default.css" />    
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/sunny/jquery-ui.css" />
