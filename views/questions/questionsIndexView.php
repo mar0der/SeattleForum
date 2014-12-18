@@ -93,24 +93,25 @@
         color:gray; 
     }
 </style>
-<script>
-    $(document).ready(function() {
-        $("#voteUp").click(function() {
-            $.post("questions/ajaxvote", { vote: "1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?> }, function(data) {
-                $("#scoring").html(data);
-            });
-        });
 
-        $("#voteDown").click(function() {
-            $.post("questions/ajaxvote", { vote: "-1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?> }, function(data) {
-                $("#scoring").html(data);
-            });
-        });
-    });
-</script>
 <section id="content">
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
+        <script>
+            $(document).ready(function() {
+                $("#voteUp").click(function() {
+                    $.post("questions/ajaxvote", {vote: "1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?>}, function(data) {
+                        $("#scoring").html(data);
+                    });
+                });
+
+                $("#voteDown").click(function() {
+                    $.post("questions/ajaxvote", {vote: "-1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?>}, function(data) {
+                        $("#scoring").html(data);
+                    });
+                });
+            });
+        </script>
         <article>
             <a href="#" id="voteUp">VoteUp</a>
             <div id="result"></div>

@@ -13,7 +13,7 @@ class Question extends Controller {
     }
 
     public function index() {
-        $this->redirect('/questions/view');
+        $this->redirect('/question/ask');
     }
 
     public function view($params = '') {
@@ -52,11 +52,6 @@ class Question extends Controller {
             }
         }
         $this->view->title = 'Ask a question!';
-        if(!empty($params)) {
-            $this->view->categoryId = (int)$params[0];
-        } else {
-            $this->redirect('/error');
-        }
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->render();

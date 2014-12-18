@@ -45,6 +45,13 @@
             <label for="questionBody">Your question:</label>
             <textarea name="questionBody" id="questionBody"></textarea>
             <br />
+            <select>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+            <br/>
             <label for="tags">Tags:</label>
             <input type="text" id="tags" name="tags" placeholder="Comma separated"/><br />
             <input type="hidden" name="categoryId" value="<?= $this->categoryId ?>" />
