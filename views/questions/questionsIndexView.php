@@ -93,27 +93,25 @@
         color:gray; 
     }
 </style>
+<script>
+    function voteUp(questionId) {
+        $.post("questions/ajaxvote", {vote: "1", questionId: questionId}, function(data) {
+            $("#scoring").html(data);
+        });
+    }
 
+    function voteDown(questionId) {
+        $.post("questions/ajaxvote", {vote: "-1", questionId: questionId}, function(data) {
+            $("#scoring").html(data);
+        });
+    }
+</script>
 <section id="content">
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
-        <script>
-            $(document).ready(function() {
-                $("#voteUp").click(function() {
-                    $.post("questions/ajaxvote", {vote: "1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?>}, function(data) {
-                        $("#scoring").html(data);
-                    });
-                });
-
-                $("#voteDown").click(function() {
-                    $.post("questions/ajaxvote", {vote: "-1", questionId: <?= @$this->allQuestions[$i]["question_id"] ?>}, function(data) {
-                        $("#scoring").html(data);
-                    });
-                });
-            });
-        </script>
         <article>
-            <a href="#" id="voteUp">VoteUp</a>
+            <a href="#" id="voteUp" onclick="voteUp(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteUp</a>
+            <a href="#" id="voteDown" onclick="voteDown(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteDown</a>
             <div id="result"></div>
             <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
