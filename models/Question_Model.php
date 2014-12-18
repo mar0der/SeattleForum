@@ -26,17 +26,18 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
             array("visites" => $visits
             ), "id = " . $questionId);
     }
-    
+
     public function addQuestion($creatorId, $categoryId, $subject, $body, $tags){
-        $added_question = $this->db->insert("questions",
+        //$added_question =
+        $this->db->insert("questions",
             array("creator_id"  => $creatorId,
-                  "category_id" => $categoryId,
-                  "create_date" => date("Y-m-d h:i:s"),
-                  "edit_date"   => date("Y-m-d h:i:s"),
-                  "subject"     => $subject,
-                  "body"        => $body,
-                  "score"       => 0,
-                  "visites"     => 0
+                "category_id" => $categoryId,
+                "create_date" => date("Y-m-d h:i:s"),
+                "edit_date"   => date("Y-m-d h:i:s"),
+                "subject"     => $subject,
+                "body"        => $body,
+                "score"       => 0,
+                "visites"     => 0
             ));
 
         $questionIdArr = $this->db->select("SELECT MAX(id) as id FROM questions");
@@ -47,7 +48,7 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
                 $tagId = $this->getTagId($val);
                 $this->db->insert("tags_questions",
                     array("question_id" => $questionId,
-                          "tag_id"      => $tagId
+                        "tag_id"      => $tagId
                     ));
             } else {
                 $this->db->insert("tags",
@@ -61,7 +62,7 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
             }
         }
 
-        return $added_question; //this is a boolean value
+        //return $added_question; //this is a boolean value
     }
 
     public function editQuestion($questionId){
@@ -69,20 +70,20 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
 FROM questions A WHERE A.id = :qId", array(':qId' => $questionId));
         return $question_edit;
     }
-    
+
     public function saveEditedQuestion($questionId, $body){
         $updated = $this->db->update("questions",
             array("body"      => $body,
-                  "edit_date" => date("Y-m-d h:i:s")
+                "edit_date" => date("Y-m-d h:i:s")
             ), "id = " . $questionId);
         return $updated;
     }
-    
+
     public function deleteQuestion($questionId){
         $deleted = $this->db->delete("questions", "id = " . $questionId);
         return $deleted;
     }
-    
+
 //############ private functions ##############
     private function getCreator($creatorId){
         $creator = $this->db->select("SELECT A.score, A.username, A.avatar, A.userid as user_id
