@@ -42,10 +42,11 @@ class Question extends Controller {
                 $this->view->render();
                 die();
             } else {
-                $subject = htmlentities($_POST['subject']);
-                $body = htmlentities($_POST['question_body']);
-                $tagsStr = htmlentities($_POST['tags']);
-                $categoryId = htmlentities($_POST['categoryId']);
+                $subject = $postData['subject'];
+                $body = $postData['question_body'];
+                $tagsStr = $postData['tags'];
+                $categoryId = $postData['categoryId'];
+                $this->view->category_id = $categoryId;
                 $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
                 $this->model->addQuestion(Session::get('userid'), $categoryId, $subject, $body, $tags);
             }

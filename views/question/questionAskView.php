@@ -46,6 +46,7 @@
 </style>
 <section id="content">
     <article>
+        <?php var_dump($this->category_id); ?>
         <form action="question/ask" method="post">
             <label for="subject">Subject:</label>
             <input type="text" name="subject" id="subject" />
