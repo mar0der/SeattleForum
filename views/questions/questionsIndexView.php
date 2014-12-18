@@ -102,7 +102,7 @@
 
     function voteDown(questionId) {
         $.post("questions/ajaxvote", {vote: "-1", questionId: questionId}, function(data) {
-            $("#scoring-"+questionId).html(data);
+            $("#scoring"+questionId).html(data);
         });
     }
 </script>
