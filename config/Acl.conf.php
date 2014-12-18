@@ -2,14 +2,14 @@
 
 $acl = array(
     'guest' => array(
-        'Index',
+        'index',
         'Questions',
         'Question',
         'About'
     ),
     'user' => array(
-        'Index',
-        'question',
+        'index',
+        'Question',
         'Questions',
         'answer',
         'User',
@@ -17,8 +17,8 @@ $acl = array(
         'About'
     ),
     'owner' => array(
-        'Index',
-        'question',
+        'index',
+        'Question',
         'Questions',
         'answer',
         'User',
