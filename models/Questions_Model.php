@@ -56,7 +56,6 @@ FROM tags A INNER JOIN tags_questions B ON A.tag_id = B.tag_id
 INNER JOIN questions C ON B.question_id = C.id
 GROUP BY A.tag_id, A.tag_name) as TEMP
 ORDER BY TEMP.orderer DESC");
-
         //get all tags and sort them by number of uses
         return $tags;
     }

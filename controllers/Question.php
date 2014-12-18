@@ -17,7 +17,6 @@ class Question extends Controller {
     }
 
     public function view($params = '') {
-
         if(!empty($params)) {
             $questionId = (int)$params[0];
         } else {
@@ -37,18 +36,18 @@ class Question extends Controller {
     public function ask() {
         if(isset($_POST) && count($_POST) > 0) {
             $postData = $this->sanitizeArray($_POST);
-            if (empty($postData['subject']) || empty($postData['question_body']) || empty($postData['tags']) || empty($postData['categoryId'])) {
+            if (empty($postData['subject']) || empty($postData['questionBody']) || empty($postData['tags']) || empty($postData['categoryId'])) {
                 $this->view->response = "All fields are required.";
                 $this->view->render();
-                die();
             } else {
                 $subject = $postData['subject'];
-                $body = $postData['question_body'];
+                $body = $postData['questionBody'];
                 $tagsStr = $postData['tags'];
                 $categoryId = $postData['categoryId'];
-                $this->view->category_id = $categoryId;
+                $this->view->category_id = $categoryId."kkk";
                 $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
                 $this->model->addQuestion(Session::get('userid'), $categoryId, $subject, $body, $tags);
+                $this->redirect('/questions');
             }
         }
         $this->view->title = 'Ask a question!';

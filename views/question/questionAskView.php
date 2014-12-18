@@ -46,8 +46,7 @@
 </style>
 <section id="content">
     <article>
-        <?php var_dump($this->category_id); ?>
-        <form action="question/ask" method="post">
+        <form action="/question/ask" method="post">
             <label for="subject">Subject:</label>
             <input type="text" name="subject" id="subject" />
             <br/>
@@ -56,13 +55,12 @@
             <br />
             <label for="categories">Categories:</label>
             <select id="categoriesSelect" name="categoryId">
-                <?php for($i = 0; $i < count($this->allCategories); $i++) {
-                    if($i == 0) {
-                        echo "<option value=\"".$this->allCategories[$i]['category_id']."\ selected = \"selected\">".$this->allCategories[$i]['category_name']."</option>";
-                        continue;
-                    }
-                    echo "<option value=\"".$this->allCategories[$i]['category_id']."\">".$this->allCategories[$i]['category_name']."</option>";
-                } ?>
+                <option value="" selected></option>
+                <?php
+                for ($i = 0; $i < count($this->allCategories); $i++) {
+                    echo "<option value=\"" . $this->allCategories[$i]['category_id'] . "\">" . $this->allCategories[$i]['category_name'] . "</option>";
+                }
+                ?>
             </select>
             <br/>
             <label for="tags">Tags:</label>
@@ -78,14 +76,14 @@
     <ul class="categories">
         <?php for ($i = 0; $i < count($this->allCategories); $i++) { ?>
             <li><a href="/questions/category/<?= @$this->allCategories[$i]["category_id"] ?>"><?= @$this->allCategories[$i]["category_name"] ?></a><span class="notification"><?= $this->allCategories[$i]["questions_number"] ?></span></li>
-        <?php } ?>
+<?php } ?>
     </ul>
 </aside>
 <aside id="tags">
     <header>Tags:</header>
     <?php for ($i = 0; $i < count($this->allTags); $i++) { ?>
         <a href="/questions/tag/<?= @$this->allTags[$i]["tag_id"] ?>" class="tags"><?= @$this->allTags[$i]["tag_name"] ?></a>
-    <?php
+        <?php
     }
     ?>
 </aside>

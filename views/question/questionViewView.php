@@ -59,28 +59,21 @@
     }
     div.counters{
         height: 60px;
-        width:80px;
+        width:59px;
         display: inline-block;
-        margin-left: 30px;
-        background-color: green;
-
+        margin-left: 20px;
     }
     div.counters > div {
-        background-color: yellow;
         height:30px;
-    }
-    div.counters > div > div{
-        display:inline-block;
-        height: 25px;
-        width:98%;
-        margin-top: 10px;
-        text-align: center;
+        padding-top:7px
     }
 
     div.counters div:nth-child(1){
         border-bottom: 1px solid #000;
     }
-
+    div.counters div span:nth-child(1){
+        margin-right:10px;
+    }
     div.last-answer{
         display: inline-block;
         height: 40px;
@@ -131,6 +124,18 @@
         background-image: -moz-linear-gradient(top, #fcd589, #faba3e);
         background-image: -o-linear-gradient(top, #fcd589, #faba3e);
         background-image: linear-gradient(to bottom, #fcd589, #faba3e);
+        text-decoration: none;
+    }
+    .add-btn:hover{
+        color: #FFF;
+        text-decoration: none;
+    }
+    .add-btn:visited{
+        color: #FFF;
+        text-decoration: none;
+    }
+    .add-btn:active{
+        color: #FFF;
         text-decoration: none;
     }
 </style>
