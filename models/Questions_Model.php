@@ -16,7 +16,7 @@ FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid");
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN tags_questions C ON A.id = C.question_id
-INNER JOIN tags D ON C.tag_id = D.tag_id WHERE D.tag_name = (:tag)", array(':tag' => $params["tag"]));
+INNER JOIN tags D ON C.tag_id = D.tag_id WHERE D.tag_id = (:tag)", array(':tag' => $params["tag"]));
         } elseif($params["tag"] == "") {
             $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid

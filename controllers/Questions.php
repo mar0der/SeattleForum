@@ -28,7 +28,7 @@ class Questions extends Controller {
 
     public function tag($getParams) {
         $this->view->title = 'questions/tag';
-        $tag = $this->sanitize($getParams[0]);
+        $tag = (int)$getParams[0];
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
         $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));
