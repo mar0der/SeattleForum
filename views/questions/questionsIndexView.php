@@ -96,13 +96,13 @@
 <script>
     function voteUp(questionId) {
         $.post("questions/ajaxvote", {vote: "1", questionId: questionId}, function(data) {
-            $("#scoring").html(data);
+            $("#scoring-"+questionId).html(data);
         });
     }
 
     function voteDown(questionId) {
         $.post("questions/ajaxvote", {vote: "-1", questionId: questionId}, function(data) {
-            $("#scoring").html(data);
+            $("#scoring"+questionId).html(data);
         });
     }
 </script>
@@ -126,7 +126,8 @@
                     ?>
                 </span>
                 <br />
-            <div class="counters" id="scoring"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
+            </p>
+            <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["visites"] ?></div> <div>Visits</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["answers_number"] ?></div> <div>Answers</div></div>
             <div class="last-answer"> Last answer:
