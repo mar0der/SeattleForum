@@ -13,11 +13,11 @@
         color: #555;
         height: 30px;
         line-height:15px;
-        width: 70%;
+        width: 550px;
         padding: 0px 0px 0px 10px; 
         margin-left:0;
         margin-top: 2px;
-        border: 1px solid #E5E5E5;
+        border: 1px solid #436fac;
         background: #FBFBFB;
         outline: 0;
         -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
@@ -28,11 +28,19 @@
     textarea{
         height:200px;
         padding-top: 10px;
+        margin-top:10px;
     }
     input[type=submit]{
         margin-left:0px;
-        margin-top: 5px;
+        margin-top: 10px;
         padding: 4px 25px;
+    }
+    
+    #categoriesSelect{
+        width:560px;
+        margin-left:0;
+        margin-bottom:10px;
+        border: 1px solid #436fac;
     }
 
 </style>
@@ -45,7 +53,8 @@
             <label for="questionBody">Your question:</label>
             <textarea name="questionBody" id="questionBody"></textarea>
             <br />
-            <select>
+            <label for="categories">Categories:</label>
+            <select id="categoriesSelect">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
