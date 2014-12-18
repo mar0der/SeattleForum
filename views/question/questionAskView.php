@@ -14,6 +14,21 @@
         padding-top: 10px;
     }
 
+    .smart-green input[type="text"], .smart-green input[type="email"], .smart-green textarea, .smart-green select {
+        color: #555;
+        height: 30px;
+        line-height:15px;
+        width: 100%;
+        padding: 0px 0px 0px 10px;
+        margin-top: 2px;
+        border: 1px solid #E5E5E5;
+        background: #FBFBFB;
+        outline: 0;
+        -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+        box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+        font: normal 14px/14px Arial, Helvetica, sans-serif;
+    }
+
 </style>
 <section id="content">
     <article>

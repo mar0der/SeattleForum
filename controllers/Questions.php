@@ -18,7 +18,7 @@ class Questions extends Controller {
     }
 
     public function category($getParams) {
-        $category = (int)$getParams[0];
+        $category = (int) $getParams[0];
         $this->view->title = 'questions/category';
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
@@ -28,11 +28,19 @@ class Questions extends Controller {
 
     public function tag($getParams) {
         $this->view->title = 'questions/tag';
-        $tag = (int)$getParams[0];
+        $tag = (int) $getParams[0];
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
         $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));
         $this->view->render('questions/index'); //reusing the view of index
+    }
+
+    public function ajaxvote() {
+        if(isset($_POST) && count($_POST)>0){
+            echo $vote = $this->sanitize($_POST["vote"]);
+        }else{
+            echo "-1";
+        }
     }
 
 }

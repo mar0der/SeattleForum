@@ -93,10 +93,21 @@
         color:gray; 
     }
 </style>
+<script>
+    $(document).ready(function() {
+        $("#voteUp").click(function() {
+            $.post("questions/ajaxvote", { vote: "1" }, function(data) {
+                $("#result").html(data);
+            });
+        });
+    });
+</script>
 <section id="content">
 
     <?php for ($i = 0; $i < count($this->allQuestions); $i++) { ?>
         <article>
+            <a href="#" id="voteUp">VoteUp</a>
+            <div id="result"></div>
             <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
                 <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?>"><?= @$this->allQuestions[$i]["username"] ?></a>
