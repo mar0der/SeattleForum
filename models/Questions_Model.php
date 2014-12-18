@@ -61,26 +61,54 @@ ORDER BY TEMP.orderer DESC");
         return $tags;
     }
 
-    public function votePlus($questionId) {
+    public function votePlus($userid, $questionId, $answerId) {
         $initialScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
         $initialScore[0]["score"]++;
         $this->db->update("questions",
             array("score"      => $initialScore[0]["score"],
             ), "id = " . $questionId);
 
+        $this->db->insert("votes",
+            array("user_voting" => $userid,
+                  "question_id_voted" => $questionId,
+                  "answer_id_voted" => $answerId
+            )
+        );
+
         $laterScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
         return $laterScore[0]["score"];
     }
 
-    public function voteMinus($questionId) {
+    public function voteMinus($userid, $questionId, $answerId) {
         $initialScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
         $initialScore[0]["score"]--;
         $this->db->update("questions",
             array("score"      => $initialScore[0]["score"],
             ), "id = " . $questionId);
 
+        $this->db->insert("votes",
+            array("user_voting" => $userid,
+                  "question_id_voted" => $questionId,
+                  "answer_id_voted" => $answerId
+            )
+        );
+
         $laterScore = $this->db->select("SELECT score FROM questions WHERE id = :qId", array(':qId' => $questionId));
         return $laterScore[0]["score"];
+    }
+
+    public function checkIfVoted($voterId, $questionId = 0, $answerId = 0) {
+        if($questionId != 0) {
+            $result = $this->db->select("SELECT COUNT(*) as counter
+FROM votes A INNER JOIN questions B ON B.id = A.question_id_voted WHERE B.id = :qId AND A.user_voting = :voterId"
+                , array(':qId' => $questionId, ':voterId' => $voterId));
+            return $result[0]['counter'];
+        } else {
+            $result = $this->db->select("SELECT COUNT(*) as counter
+FROM votes A INNER JOIN answers B ON B.id = A.answer_id_voted WHERE B.id = :aId AND A.user_voting = :voterId"
+                , array(':aId' => $answerId, ':voterId' => $voterId));
+            return $result[0]['counter'];
+        }
     }
     
 // private functions. You can`t call them from outside of this model

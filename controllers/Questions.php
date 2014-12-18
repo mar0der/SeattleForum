@@ -28,7 +28,7 @@ class Questions extends Controller {
 
     public function tag($getParams) {
         $this->view->title = 'questions/tag';
-        $tag = (int) $getParams[0];
+        $tag = $this->sanitize($getParams[0]);
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
         $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));
@@ -38,13 +38,17 @@ class Questions extends Controller {
     public function ajaxvote() {
         if(isset($_POST) && count($_POST)>0){
             $vote = $this->sanitize($_POST["vote"]);
-            $questionId = $this->sanitize($_POST["questionId"]);
-            if((int)$vote == 1) {
-                $votePlus = $this->model->votePlus($questionId);
-                echo $votePlus;
-            } else {
-                $voteMinus = $this->model->voteMinus($questionId);
-                echo $voteMinus;
+            @$questionId = $this->sanitize($_POST["questionId"]);
+            $voted = $this->model->checkIfVoted(Session::get('userid'), $questionId);
+            $this->view->hasVoted = $voted;
+            if($voted == 0) {
+                if((int)$vote == 1) {
+                    $votePlus = $this->model->votePlus(Session::get('userid'), $questionId, null);
+                    echo $votePlus;
+                } else {
+                    $voteMinus = $this->model->voteMinus(Session::get('userid'), $questionId, null);
+                    echo $voteMinus;
+                }
             }
         }else{
             $this->redirect('questions/index');
