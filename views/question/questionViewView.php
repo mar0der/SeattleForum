@@ -59,16 +59,24 @@
     }
     div.counters{
         height: 60px;
-        width:60px;
+        width:80px;
         display: inline-block;
+        margin-left: 30px;
+        background-color: green;
 
     }
-    div.counters div{
+    div.counters > div {
+        background-color: yellow;
+        height:30px;
+    }
+    div.counters > div > div{
+        display:inline-block;
         height: 25px;
         width:98%;
         margin-top: 10px;
         text-align: center;
     }
+
     div.counters div:nth-child(1){
         border-bottom: 1px solid #000;
     }
@@ -154,13 +162,23 @@
         </p>
         <div id="profile-left">
             <img src="<?= $this->question[0]["creator"][0]["avatar"] ?>" width="100px" height="100px">
-            <div class="username" ><?= $this->question[0]["score"] ?></span></div>
+            <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
+                <div>
+                    <span value="+" class="glyphicon glyphicon-chevron-up"></span>
+                    <span><?= $this->question[0]["score"] ?></span> 
+                </div>
+                <div>
+                    <span type="submit" value="-" class="glyphicon glyphicon-chevron-down">
+                    </span><span>Votes</span>
+                </div>
+            </div>
         </div>
         <div id="profile-right">
             <p class="post-body"><?= $this->question[0]["body"] ?></p>
         </div>
         <a href="#" id="button" class = "add-btn">Add answer</a>
     </article>
+
     <article style="display:none;" id="addAnswer">
         <form action="answer/add" method="post">
             <br/>
