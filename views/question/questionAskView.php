@@ -57,6 +57,10 @@
             <label for="categories">Categories:</label>
             <select id="categoriesSelect" name="categoryId">
                 <?php for($i = 0; $i < count($this->allCategories); $i++) {
+                    if($i == 0) {
+                        echo "<option value=\"".$this->allCategories[$i]['category_id']."\ selected = \"selected\">".$this->allCategories[$i]['category_name']."</option>";
+                        continue;
+                    }
                     echo "<option value=\"".$this->allCategories[$i]['category_id']."\">".$this->allCategories[$i]['category_name']."</option>";
                 } ?>
             </select>
