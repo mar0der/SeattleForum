@@ -55,10 +55,9 @@
             <br />
             <label for="categories">Categories:</label>
             <select id="categoriesSelect">
-                <option value="1">Volvo</option>
-                <option value="2">Saab</option>
-                <option value="3">Mercedes</option>
-                <option value="4">Audi</option>
+                <?php for($i = 0; $i < count($this->allCategories); $i++) {
+                    echo "<option value=\"".$this->allCategories[$i]['category_id']."\">".$this->allCategories[$i]['category_name']."</option>";
+                } ?>
             </select>
             <br/>
             <label for="tags">Tags:</label>
