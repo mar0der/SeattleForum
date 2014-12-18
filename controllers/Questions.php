@@ -44,7 +44,7 @@ class Questions extends Controller {
             if($voted == 0) {
                 if((int)$vote == 1) {
                     $votePlus = $this->model->votePlus(Session::get('userid'), $questionId, null);
-                    echo '+1';
+                    echo $votePlus;
                 } else {
                     $voteMinus = $this->model->voteMinus(Session::get('userid'), $questionId, null);
                     echo $voteMinus;

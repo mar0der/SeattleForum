@@ -4,6 +4,7 @@ $acl = array(
     'guest' => array(
         'Index',
         'Questions',
+        'Question',
         'About'
     ),
     'user' => array(
