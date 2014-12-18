@@ -10,7 +10,6 @@ class User extends Controller {
 
     public function index() {
         $this->redirect('/user/profile');
-        $this->view->render();
     }
 
     public function register() {

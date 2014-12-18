@@ -71,7 +71,26 @@
         text-align: center;
     }
     div.counters div:nth-child(1){
-         border-bottom: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    div.last-answer{
+        display: inline-block;
+        height: 40px;
+        border-left: 1px solid gray;
+        margin-top: 15px;
+        vertical-align: top;
+        padding-left:10px;
+        padding-top:10px;
+    }
+    a.last-answerer{
+        text-decoration: none;
+        color: #436fac;
+    }
+
+    span.last-answer-time{
+        font-size: 14px;
+        color:gray; 
     }
 </style>
 <section id="content">
@@ -80,7 +99,7 @@
         <article>
             <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
-                <span class="username-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["username"] ?></a>
+                <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?><"><?= @$this->allQuestions[$i]["username"] ?></a>
                 <span class="added-time-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["create_date"] ?></a>
                 <span class="tags-icon" ></span>
                 <span class="tags-display">
@@ -94,12 +113,11 @@
             <div class="counters"><div><?= $this->allQuestions[$i]["score"] ?></div> <div>Votes</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["visites"] ?></div> <div>Visits</div></div>
             <div class="counters"><div><?= $this->allQuestions[$i]["answers_number"] ?></div> <div>Answers</div></div>
-            <!--<span>Posleden otgowor: <?= $this->allQuestions[$i]["latest_answer"]["username"] ?></span>
-            <span> <?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span> -->
-
-            <div><?php //$this->allQuestions[$i]["body"]             ?></div>
+            <div class="last-answer"> Last answer:
+                <span><a href="/user/profile/<?= @$this->allQuestions[$i]["question_id"] ?> " class = "last-answerer"><?= $this->allQuestions[$i]["latest_answer"]["username"] ?></a></span>
+                on <span class="last-answer-time"><?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span>
+            </div>
         </article>
-
     <?php } ?>
 </section>
 <aside id="categories">
