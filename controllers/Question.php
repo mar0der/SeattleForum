@@ -34,20 +34,23 @@ class Question extends Controller {
         $this->view->render();
     }
 
-    public function ask() {
+    public function ask($params = '') {
         if(isset($_POST) && count($_POST) > 0) {
             $postData = $this->sanitizeArray($_POST);
-            if (empty($postData['subject']) || empty($postData['question_body']) || empty($postData['tags']) || empty($postData['categoryId'])) {
-                $this->view->response = "All fields are required.";
-                $this->view->render();
-                die();
+            if($postData['categoryId'] == 0) {
+                if (empty($postData['subject']) || empty($postData['question_body']) || empty($postData['tags'])) {
+                    $this->view->response = "All fields are required.";
+                    $this->view->render();
+                    die();
+                } else {
+                    $subject = htmlentities($_POST['subject']);
+                    $body = htmlentities($_POST['question_body']);
+                    $tagsStr = htmlentities($_POST['tags']);
+                    $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
+                    $this->model->addQuestion(Session::get('userid'), $postData['categoryId'], $subject, $body, $tags);
+                }
             } else {
-                $subject = htmlentities($_POST['subject']);
-                $body = htmlentities($_POST['question_body']);
-                $tagsStr = htmlentities($_POST['tags']);
-                $categoryId = htmlentities($_POST['categoryId']);
-                $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
-                $this->model->addQuestion(Session::get('userid'), $categoryId, $subject, $body, $tags);
+                $this->redirect('/error');
             }
         }
         $this->view->title = 'Ask a question!';
