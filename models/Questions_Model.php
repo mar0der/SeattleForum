@@ -10,23 +10,23 @@ class Questions_Model extends Model
     
     public function getAllQuestions($params = array("category" => "", "tag" => "")){  //default values of cat and tag might be better to be changed to null
         if($params["category"] == "" && $params["tag"] == "") {
-            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
+            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid");
         } elseif($params["category"] == "") {
-            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
+            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN tags_questions C ON A.id = C.question_id
 INNER JOIN tags D ON C.tag_id = D.tag_id WHERE D.tag_name = (:tag)", array(':tag' => $params["tag"]));
         } elseif($params["tag"] == "") {
-            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
+            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN categories C ON A.category_id = C.id
-WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
+WHERE C.id = :catId", array(':catId' => $params["category"]));
         } else {
-            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date
+            $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid
 FROM questions as A INNER JOIN users as B ON A.creator_id = B.userid
 INNER JOIN categories C ON A.category_id = C.id
-WHERE C.category_url = :catURL", array(':catURL' => $params["category"]));
+WHERE C.id = :catId", array(':catId' => $params["category"]));
         }
 
         foreach($questions as $key => $val) {
@@ -69,7 +69,7 @@ ORDER BY TEMP.orderer DESC");
     }
 
     private function getLatestAnswer($questionId) {
-        $result = $this->db->select("SELECT B.role, B.username, A.create_date, B.avatar
+        $result = $this->db->select("SELECT B.userid, B.role, B.username, A.create_date, B.avatar
 FROM questions as A INNER JOIN users B ON A.creator_id = B.userid WHERE A.id = :questionId ORDER BY A.create_date DESC LIMIT 1"
             , array(':questionId' => $questionId));
         return $result[0];
