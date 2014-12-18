@@ -37,9 +37,17 @@ class Questions extends Controller {
 
     public function ajaxvote() {
         if(isset($_POST) && count($_POST)>0){
-            echo $vote = $this->sanitize($_POST["vote"]);
+            $vote = $this->sanitize($_POST["vote"]);
+            $questionId = $this->sanitize($_POST["questionId"]);
+            if((int)$vote == 1) {
+                $votePlus = $this->model->votePlus($questionId);
+                echo $votePlus;
+            } else {
+                $voteMinus = $this->model->voteMinus($questionId);
+                echo $voteMinus;
+            }
         }else{
-            echo "-1";
+            $this->redirect('questions/index');
         }
     }
 
