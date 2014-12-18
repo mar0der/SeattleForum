@@ -7,7 +7,7 @@ class Question_Model extends Model {
     }
 
     public function getQuestion($questionId) {
-        $question = $this->db->select("SELECT A.id as question_id, A.create_date, A.score, A.subject, A.body, A.edit_date, B.category_name, A.creator_id
+        $question = $this->db->select("SELECT A.id as question_id, A.create_date, A.score, A.visites, A.subject, A.body, A.edit_date, B.category_name, A.creator_id
 FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :qId", array(':qId' => $questionId));
 
         foreach($question as $key => $val) {

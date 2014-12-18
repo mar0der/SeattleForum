@@ -13,11 +13,11 @@ class Question extends Controller {
     }
 
     public function index() {
-        $this->view->title = 'question/index go to view';
-        $this->view->render();
+        $this->redirect('/question/view');
     }
 
     public function view($params = '') {
+
         if(!empty($params)) {
             $questionId = (int)$params[0];
         } else {
@@ -26,6 +26,7 @@ class Question extends Controller {
         $this->view->answers = $this->answersModel->getAllAnswersForQuestion($questionId);
         $this->view->title = 'question/view';
         $this->view->question = $this->model->getQuestion($questionId);
+        $this->view->question[0]["visites"]++;
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
         $this->view->render();
