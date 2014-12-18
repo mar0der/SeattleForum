@@ -28,8 +28,7 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
     }
     
     public function addQuestion($creatorId, $categoryId, $subject, $body, $tags){
-        //$added_question =
-        $this->db->insert("questions",
+        $added_question = $this->db->insert("questions",
             array("creator_id"  => $creatorId,
                   "category_id" => $categoryId,
                   "create_date" => date("Y-m-d h:i:s"),
@@ -62,7 +61,7 @@ FROM questions A INNER JOIN categories B ON A.category_id = B.id WHERE A.id = :q
             }
         }
 
-        //return $added_question; //this is a boolean value
+        return $added_question; //this is a boolean value
     }
 
     public function editQuestion($questionId){

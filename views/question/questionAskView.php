@@ -54,7 +54,7 @@
             <textarea name="questionBody" id="questionBody"></textarea>
             <br />
             <label for="categories">Categories:</label>
-            <select id="categoriesSelect" name="categoryId">
+            <select id="categoriesSelect">
                 <?php for($i = 0; $i < count($this->allCategories); $i++) {
                     echo "<option value=\"".$this->allCategories[$i]['category_id']."\">".$this->allCategories[$i]['category_name']."</option>";
                 } ?>
@@ -62,6 +62,7 @@
             <br/>
             <label for="tags">Tags:</label>
             <input type="text" id="tags" name="tags" placeholder="Comma separated"/><br />
+            <input type="hidden" name="categoryId" value="<?= $this->categoryId ?>" />
             <label for="submit"></label>
             <input type="submit" value="Ask">
         </form>
