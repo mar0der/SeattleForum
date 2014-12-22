@@ -30,7 +30,7 @@ class Menu {
                 if ($v != strtolower($v)) {
                     $path = Config::getValue("paths");
                     $path = $path["url"];
-                    $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($v) . "\"/>" . $v . "</a></li>";
+                    $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($v) . "\">" . $v . "</a></li>";
                 }
             }
             //is logged it

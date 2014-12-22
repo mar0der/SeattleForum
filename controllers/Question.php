@@ -17,17 +17,17 @@ class Question extends Controller {
     }
 
     public function view($params = '') {
+        $this->view->expanded = 'none';
         if (!empty($params)) {
             $questionId = (int) $params[0];
+            if (!empty($params[1]) and $params[1] != "") {
+                $this->view->expanded = 'block';
+                $this->view->response = "All fields must be filled!";
+            }
         } else {
             $this->redirect('/error');
         }
-        if ($params[1] != "") {
-            $this->view->expanded = 'block';
-            $this->view->response = "All fields must be filled!";
-        } else {
-            $this->view->expanded = 'none';
-        }
+
         $paths = Config::getValue('paths');
         $this->view->avatarPath = $paths['avatarUrl'];
         $this->view->answers = $this->answersModel->getAllAnswersForQuestion($questionId);

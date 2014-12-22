@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     article{
         background-color:white;
         border-radius: 10px;
@@ -7,10 +7,10 @@
         margin-bottom:10px;
     }
 
-    header.question{
+    .question{
         font-size: 20px;
     }
-    header.question a{
+    .question a{
         text-decoration: none;
         color:#436fac;
     }
@@ -93,12 +93,12 @@
         color:gray; 
     }
     /* question post style */
-    #profile-left{
+    .profile-left{
         width: 15%;
         display: inline-block;
         padding:10px;
     }
-    #profile-right{
+    .profile-right{
         width: 84%;
         display:inline-block;
         margin-top:10px;
@@ -162,9 +162,9 @@
 </script>
 <section id="content">
     <article>
-        <header class="question"><a href="#"><?= $this->question[0]["subject"] ?></a></header>
+        <h2 class="question"><a href="#"><?= $this->question[0]["subject"] ?></a></h2>
         <p class = "navigation">
-            <span class="username-icon" ></span><a href="/user/profile/<?= $this->question[0]["creator"][0]["user_id"] ?>"><?= $this->question[0]["creator"][0]["username"] ?></a>
+            <span class="username-icon" ></span><a href="/user/profile/<?= $this->question[0]["creator"][0]["user_id"] ?>"><?= @$this->question[0]["creator"][0]["username"] ?></a>
             <span class="added-time-icon" ></span><a href="#"><?= @$this->question[0]["create_date"] ?></a>
             <span class="tags-icon" ></span>
             <span class="tags-display">
@@ -175,26 +175,26 @@
                 ?>
             </span>
         </p>
-        <div id="profile-left">
-            <img src="<?= @$this->avatarPath.$this->question[0]["creator"][0]["avatar"] ?>" width="100px" height="100px">
+        <div class="profile-left">
+            <img src="<?= @$this->avatarPath.$this->question[0]["creator"][0]["avatar"] ?>" width="100" height="100" alt="<?= $this->question[0]["creator"][0]["username"];?>' avatar">
             <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
                 <div>
-                    <span value="+" class="glyphicon glyphicon-chevron-up"></span>
+                    <span class="glyphicon glyphicon-chevron-up"></span>
                     <span><?= $this->question[0]["score"] ?></span> 
                 </div>
                 <div>
-                    <span type="submit" value="-" class="glyphicon glyphicon-chevron-down">
+                    <span class="glyphicon glyphicon-chevron-down">
                     </span><span>Votes</span>
                 </div>
             </div>
         </div>
-        <div id="profile-right">
+        <div class="profile-right">
             <p class="post-body"><?= $this->question[0]["body"] ?></p>
         </div>
         <a href="#" id="button" class = "add-btn">Add answer</a>
     </article>
 
-    <article style="display:<?php echo @$this->expanded; ?>;" id="addAnswer">
+    <div style="display:<?php echo @$this->expanded; ?>;" id="addAnswer">
         <form action="/answer/add" method="post">
             <br/>
             <label for="answerBody">Your answer:</label>
@@ -204,36 +204,34 @@
             <input class ="add-btn" type="submit" id="submitAnswer" value="Add">
         </form>
 
-    </article>
+    </div>
 
     <?php
     for ($i = 0; $i < count($this->answers); $i++) {
         ?>
-        <article>
+        <div>
             <p class = "navigation">
                 <span class="username-icon" ></span><a href="/user/profile/<?= @$this->answers[$i]["creator"][0]["user_id"] ?>"> <?= @$this->answers[$i]["creator"][0]["username"] ?></a>
                 <span class="added-time-icon" ></span><a href="#"><?= @$this->answers[$i]["create_date"]  ?></a>
             </p>
-            <div id="profile-left">
-                <img src="<?= @$this->avatarPath.$this->answers[$i]["creator"][0]["avatar"] ?>" width="100px" height="100px">
-                <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
+            <div class="profile-left">
+                <img src="<?= @$this->avatarPath.$this->answers[$i]["creator"][0]["avatar"] ?>" width="100" height="100"  alt="<?= $this->avatarPath.$this->answers[$i]["creator"][0]["username"];?>' avatar">
+                <div class="counters" >
                     <div>
-                        <span value="+" class="glyphicon glyphicon-chevron-up"></span>
+                        <span class="glyphicon glyphicon-chevron-up"></span>
                         <span><?= @$this->answers[$i]["creator"][0]["score"] ?></span> 
                     </div>
                     <div>
-                        <span type="submit" value="-" class="glyphicon glyphicon-chevron-down">
+                        <span class="glyphicon glyphicon-chevron-down">
                         </span><span>Votes</span>
                     </div>
                 </div>
             </div>
-            <div id="profile-right">
+            <div class="profile-right">
                 <p class="post-body"><?= @$this->answers[$i]["answer_body"] ?></p>
             </div>
-            <a href="#" id="button" class = "add-btn">Add answer</a>
-        </article>
+        </div>
     <?php } ?>
-</section>
 </section>
 <aside id="categories">
     <header>Categories:</header>
