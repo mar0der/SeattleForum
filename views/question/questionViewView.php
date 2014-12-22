@@ -7,6 +7,14 @@
         margin-bottom:10px;
     }
 
+    .asnwersDiv{
+        background-color:white;
+        border-radius: 10px;
+        border: 1px solid #436fac;
+        padding:10px;
+        margin-bottom:10px;
+    }
+
     .question{
         font-size: 20px;
     }
@@ -176,7 +184,7 @@
             </span>
         </p>
         <div class="profile-left">
-            <img src="<?= @$this->avatarPath.$this->question[0]["creator"][0]["avatar"] ?>" width="100" height="100" alt="<?= $this->question[0]["creator"][0]["username"];?>' avatar">
+            <img src="<?= @$this->avatarPath . $this->question[0]["creator"][0]["avatar"] ?>" width="100" height="100" alt="<?= $this->question[0]["creator"][0]["username"]; ?>' avatar">
             <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
                 <div>
                     <span class="glyphicon glyphicon-chevron-up"></span>
@@ -194,7 +202,7 @@
         <a href="#" id="button" class = "add-btn">Add answer</a>
     </article>
 
-    <div style="display:<?php echo @$this->expanded; ?>;" id="addAnswer">
+    <div style="display:<?php echo @$this->expanded; ?>;" id="addAnswer" class ="asnwersDiv">
         <form action="/answer/add" method="post">
             <br/>
             <label for="answerBody">Your answer:</label>
@@ -209,13 +217,13 @@
     <?php
     for ($i = 0; $i < count($this->answers); $i++) {
         ?>
-        <div>
+        <div class="asnwersDiv">
             <p class = "navigation">
                 <span class="username-icon" ></span><a href="/user/profile/<?= @$this->answers[$i]["creator"][0]["user_id"] ?>"> <?= @$this->answers[$i]["creator"][0]["username"] ?></a>
-                <span class="added-time-icon" ></span><a href="#"><?= @$this->answers[$i]["create_date"]  ?></a>
+                <span class="added-time-icon" ></span><a href="#"><?= @$this->answers[$i]["create_date"] ?></a>
             </p>
             <div class="profile-left">
-                <img src="<?= @$this->avatarPath.$this->answers[$i]["creator"][0]["avatar"] ?>" width="100" height="100"  alt="<?= $this->avatarPath.$this->answers[$i]["creator"][0]["username"];?>' avatar">
+                <img src="<?= @$this->avatarPath . $this->answers[$i]["creator"][0]["avatar"] ?>" width="100" height="100"  alt="<?= $this->avatarPath . $this->answers[$i]["creator"][0]["username"]; ?>' avatar">
                 <div class="counters" >
                     <div>
                         <span class="glyphicon glyphicon-chevron-up"></span>

@@ -7,6 +7,15 @@
         padding:10px;
         margin-bottom:10px;
     }
+    
+    .answers{
+        height:150px;
+        background-color:white;
+        border-radius: 10px;
+        border: 1px solid #436fac;
+        padding:10px;
+        margin-bottom:10px;
+    }
 
     header.question{
         font-size: 20px;
