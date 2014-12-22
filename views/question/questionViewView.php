@@ -138,6 +138,16 @@
         color: #FFF;
         text-decoration: none;
     }
+    textarea{
+        width:97%;
+        height:200px;
+        padding-top: 10px;
+        margin-top:10px;
+    }
+    #error{
+        color:#f00;
+    }
+
 </style>
 <script>
     $(document).ready(function() {
@@ -166,7 +176,7 @@
             </span>
         </p>
         <div id="profile-left">
-            <img src="<?= $this->question[0]["creator"][0]["avatar"] ?>" width="100px" height="100px">
+            <img src="<?= @$this->avatarPath.$this->question[0]["creator"][0]["avatar"] ?>" width="100px" height="100px">
             <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
                 <div>
                     <span value="+" class="glyphicon glyphicon-chevron-up"></span>
@@ -184,33 +194,44 @@
         <a href="#" id="button" class = "add-btn">Add answer</a>
     </article>
 
-    <article style="display:none;" id="addAnswer">
+    <article style="display:<?php echo @$this->expanded; ?>;" id="addAnswer">
         <form action="/answer/add" method="post">
             <br/>
             <label for="answerBody">Your answer:</label>
-            <textarea name="answerBody" id="answerBody"></textarea><br />
-            <input type="hidden" name="questionId" value="<?= $this->questionId ?>" />
-            <input type="submit" id="submitAnswer" value="Add">
+            <textarea name="answerBody" id="answerBody"></textarea><br />        
+            <div id="error"><?= @$this->response ?></div>
+            <input type="hidden" name="questionId" value="<?= $this->question[0]["question_id"] ?>" />
+            <input class ="add-btn" type="submit" id="submitAnswer" value="Add">
         </form>
-        <span id="error"><?= @$this->response ?></span>
+
     </article>
 
     <?php
     for ($i = 0; $i < count($this->answers); $i++) {
         ?>
         <article>
-            <header><a href="#"></a>
-                <span><?= $this->answers[$i]["creator"][0]["avatar"] ?></span>
-                <a href="#"><span><?= $this->answers[$i]["creator"][0]["username"] ?></span></a>
-                <span><?= $this->answers[$i]["creator"][0]["score"] ?></span>
-                <span><?= $this->answers[$i]["create_date"] ?></span>
-                <span><?= $this->answers[$i]["score"] ?></span>
-            </header>
-            <p>
-                <span><?= $this->answers[$i]["answer_body"] ?></span>
+            <p class = "navigation">
+                <span class="username-icon" ></span><a href="/user/profile/<?= @$this->answers[$i]["creator"][0]["user_id"] ?>"> <?= @$this->answers[$i]["creator"][0]["username"] ?></a>
+                <span class="added-time-icon" ></span><a href="#"><?= @$this->answers[$i]["create_date"]  ?></a>
             </p>
+            <div id="profile-left">
+                <img src="<?= @$this->avatarPath.$this->answers[$i]["creator"][0]["avatar"] ?>" width="100px" height="100px">
+                <div class="counters" id="scoring-<?= @$this->allQuestions[$i]["question_id"] ?>">
+                    <div>
+                        <span value="+" class="glyphicon glyphicon-chevron-up"></span>
+                        <span><?= @$this->answers[$i]["creator"][0]["score"] ?></span> 
+                    </div>
+                    <div>
+                        <span type="submit" value="-" class="glyphicon glyphicon-chevron-down">
+                        </span><span>Votes</span>
+                    </div>
+                </div>
+            </div>
+            <div id="profile-right">
+                <p class="post-body"><?= @$this->answers[$i]["answer_body"] ?></p>
+            </div>
+            <a href="#" id="button" class = "add-btn">Add answer</a>
         </article>
-
     <?php } ?>
 </section>
 </section>

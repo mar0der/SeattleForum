@@ -19,7 +19,7 @@
     </head>
     <body>
         <header>
-<?php Menu::renderMainMenu(); ?>
+            <?php Menu::renderMainMenu(); ?>
             <div class="logged-user"> Hello, <?php Menu::renderLoggedUser(); ?>!</div>
         </header>
     <main class="clearfix">

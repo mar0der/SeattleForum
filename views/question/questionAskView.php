@@ -51,7 +51,7 @@
             <input type="text" name="subject" id="subject" />
             <br/>
             <label for="questionBody">Your question:</label>
-            <textarea name="questionBody" id="questionBody"></textarea>
+            <textarea name="questionBody" id="qb1"></textarea>
             <br />
             <label for="categories">Categories:</label>
             <select id="categoriesSelect" name="categoryId">

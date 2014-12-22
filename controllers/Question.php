@@ -17,24 +17,31 @@ class Question extends Controller {
     }
 
     public function view($params = '') {
-        if(!empty($params)) {
-            $questionId = (int)$params[0];
+        if (!empty($params)) {
+            $questionId = (int) $params[0];
         } else {
             $this->redirect('/error');
         }
+        if ($params[1] != "") {
+            $this->view->expanded = 'block';
+            $this->view->response = "All fields must be filled!";
+        } else {
+            $this->view->expanded = 'none';
+        }
+        $paths = Config::getValue('paths');
+        $this->view->avatarPath = $paths['avatarUrl'];
         $this->view->answers = $this->answersModel->getAllAnswersForQuestion($questionId);
-        $this->view->title = 'question/view';
         $this->model->addVisit($questionId);
         $this->view->question = $this->model->getQuestion($questionId);
-        $paths = Config::getValue('paths');
-        $this->view->question[0]['creator'][0]['avatar'] = $paths['avatarUrl'].$this->view->question[0]['creator'][0]['avatar'];
+        $this->view->title = $this->view->question[0]["subject"];
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
+
         $this->view->render();
     }
 
     public function ask() {
-        if(isset($_POST) && count($_POST) > 0) {
+        if (isset($_POST) && count($_POST) > 0) {
             $postData = $this->sanitizeArray($_POST);
             if (empty($postData['subject']) || empty($postData['questionBody']) || empty($postData['tags']) || empty($postData['categoryId'])) {
                 $this->view->response = "All fields are required.";
@@ -44,7 +51,7 @@ class Question extends Controller {
                 $body = $postData['questionBody'];
                 $tagsStr = $postData['tags'];
                 $categoryId = $postData['categoryId'];
-                $this->view->category_id = $categoryId."kkk";
+                $this->view->category_id = $categoryId . "kkk";
                 $tags = explode(",", str_replace(" ", "", $tagsStr)); //TODO - look at str_replace
                 $this->model->addQuestion(Session::get('userid'), $categoryId, $subject, $body, $tags);
                 $this->redirect('/questions');
