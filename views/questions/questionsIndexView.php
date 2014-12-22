@@ -113,7 +113,7 @@
            <!--     <a href="#" id="voteUp" onclick="voteUp(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteUp</a>
                 <a href="#" id="voteDown" onclick="voteDown(<?= @$this->allQuestions[$i]["question_id"] ?>)">VoteDown</a>
             <div id="result"></div> -->
-            <header class="question"><a href="question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
+            <header class="question"><a href="/question/view/<?= @$this->allQuestions[$i]["question_id"] ?>"><?= @$this->allQuestions[$i]["subject"] ?></a></header>
             <p class = "navigation">
                 <span class="username-icon" ></span><a href="/user/profile/<?= @$this->allQuestions[$i]["userid"] ?>"><?= @$this->allQuestions[$i]["username"] ?></a>
                 <span class="added-time-icon" ></span><a href="#"><?= @$this->allQuestions[$i]["create_date"] ?></a>
