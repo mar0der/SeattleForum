@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     /**profile style **/
     article{
         background-color:white;
@@ -103,7 +103,7 @@
 <section id="content">
     <article>
         <div id="profile-left">
-            <img src="<?= @$this->d[0]['avatar']; ?>" width="150px" height="150px">
+            <img src="<?= @$this->d[0]['avatar']; ?>" width="150" height="150" alt="<?= @$this->d[0]['first_name']?>'s avatar">
             <div class="username" ><?= @$this->d[0]['first_name'] . " (" . @$this->d[0]['username']; ?>)</div>
             <div class="role" ><?= @$this->d[0]['role']; ?></div>
             <a href="/user/edit/1" class = "edit-btn">edit</a>

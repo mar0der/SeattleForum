@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     article{
         height:150px;
         background-color:white;

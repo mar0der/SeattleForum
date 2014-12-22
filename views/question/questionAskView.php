@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     article{
 
         background-color:white;
@@ -36,8 +36,8 @@
         padding: 4px 25px;
     }
 
-    #categoriesSelect{
-        width:560px;
+    #categoryId{
+        width:550px;
         margin-left:0;
         margin-bottom:10px;
         border: 1px solid #436fac;
@@ -51,11 +51,11 @@
             <input type="text" name="subject" id="subject" />
             <br/>
             <label for="questionBody">Your question:</label>
-            <textarea name="questionBody" id="qb1"></textarea>
+            <textarea name="questionBody" id="questionBody"></textarea>
             <br />
-            <label for="categories">Categories:</label>
-            <select id="categoriesSelect" name="categoryId">
-                <option value="" selected></option>
+            <label for="categoryId">Categories:</label>
+            <select id="categoryId" name="categoryId">
+                <option value="" selected> </option>
                 <?php
                 for ($i = 0; $i < count($this->allCategories); $i++) {
                     echo "<option value=\"" . $this->allCategories[$i]['category_id'] . "\">" . $this->allCategories[$i]['category_name'] . "</option>";
@@ -63,10 +63,10 @@
                 ?>
             </select>
             <br/>
-            <label for="tags">Tags:</label>
-            <input type="text" id="tags" name="tags" placeholder="Comma separated"/><br />
+            <label for="tagsFields">Tags:</label>
+            <input type="text" id="tagsFields" name="tags" placeholder="Comma separated"/><br />
             <label for="submit"></label>
-            <input type="submit" value="Ask">
+            <input type="submit" id="submit" value="Ask">
         </form>
         <span id="error"><?= @$this->response ?></span>
     </article>

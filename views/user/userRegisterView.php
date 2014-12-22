@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     article{
         height:150px;
         background-color:white;
@@ -17,7 +17,7 @@
             <span class="error"><?php @$this->e; ?></span><br />
 
             <label for="password">Password</label>
-            <input type="password" id="pasword" placeholder="Password" name="pass" value="<?php echo @$this->d['password']; ?>">
+            <input type="password" id="password" placeholder="Password" name="pass" value="<?php echo @$this->d['password']; ?>">
             <span class="error"> <?php echo @$this->e['pass-error']; ?> </span><br />
 
             <label for="conf-password">Confirm Password</label>
