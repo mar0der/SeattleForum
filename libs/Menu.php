@@ -26,11 +26,11 @@ class Menu {
         $menuItems = Menu::loadMenuItems();
         if ($menuItems) {
             $mainMenu = '<nav><ul>';
-            foreach ($menuItems as $v) {
-                if ($v != strtolower($v)) {
+            foreach ($menuItems as $k => $v) {
+                if ($v[0] != "") {
                     $path = Config::getValue("paths");
                     $path = $path["url"];
-                    $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($v) . "\">" . $v . "</a></li>";
+                    $mainMenu .= "<li><a class=\"menu-links\" href=\"" . $path . strtolower($k) . "\">" . $v[0] . "</a></li>";
                 }
             }
             //is logged it

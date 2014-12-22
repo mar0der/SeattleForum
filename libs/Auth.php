@@ -26,7 +26,7 @@ class Auth
         $file = '../config/Acl.conf.php';
         if(file_exists($file)){
             require $file;
-            if (in_array($resource, $acl[$role])){
+            if (array_key_exists($resource, $acl[$role])){
                 return true;
             }
         }

@@ -1,30 +1,30 @@
 <?php
-
+//all controllers names must start with capital leter
 $acl = array(
     'guest' => array(
-        'index',
-        'Questions',
-        'Question',
-        'About'
+        'Index' => array(''),
+        'Questions' => array('Home'),
+        'Question' =>  array('Ask'),
+        'About' => array('About')
     ),
     'user' => array(
-        'index',
-        'Question',
-        'Questions',
-        'answer',
-        'User',
-        'dashboard',
-        'About'
+        'Index' => array(''),
+        'Questions' => array('Home'),
+        'Question' => array('Ask'),
+        'Answer' => array(''),
+        'User' => array('My Profile'),
+        'Dashboard' => array(''),
+        'About' => array('About')
     ),
     'owner' => array(
-        'index',
-        'Question',
-        'Questions',
-        'answer',
-        'User',
-        'dashboard',
-        'Admin',
-        'About'
+        'Index' => array(''),
+        'Questions' => array('Home'),
+        'Question' => array('Ask'),
+        'Answer' => array(''),
+        'User' => array('My Profile'),
+        'Dashboard' => array(''),
+        'About' => array('About'),
+        'Admin' => array('Admin Panel')
     )
 );
 
