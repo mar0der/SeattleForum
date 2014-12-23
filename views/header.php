@@ -8,7 +8,7 @@
         <?php
         if (isset($this->css)) {
             foreach ($this->css as $css) {
-                echo "<link rel=\"stylesheet\" href=\"".$this->url.$css."\" />";
+                echo "<link rel=\"stylesheet\" href=\"".$this->url."css/".$css."\" />";
             }
         }
         ?>

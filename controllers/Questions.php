@@ -19,6 +19,7 @@ class Questions extends Controller {
     }
 
     public function category($getParams) {
+        $this->view->css["paginator"] = "paginator.css";
         $category = (int) $getParams[0];
         $this->view->title = 'All questions in cateogry';
         $this->view->allTags = $this->model->getAllTags();
@@ -28,6 +29,7 @@ class Questions extends Controller {
     }
 
     public function tag($getParams) {
+        $this->view->css["paginator"] = "paginator.css";
         $this->view->title = 'All questions for tag';
         $tag = $this->sanitize($getParams[0]);
         $this->view->allTags = $this->model->getAllTags();
