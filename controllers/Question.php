@@ -46,6 +46,7 @@ class Question extends Controller {
             if (empty($postData['subject']) || empty($postData['questionBody']) || empty($postData['tags']) || empty($postData['categoryId'])) {
                 $this->view->response = "All fields are required.";
                 $this->view->render();
+                die;
             } else {
                 $subject = $postData['subject'];
                 $body = $postData['questionBody'];
@@ -66,8 +67,6 @@ class Question extends Controller {
     public function edit() {
         $this->view->title = 'question/edit';
         $this->model->editQuestion($questionId);
-        //$this->model->saveEditedQuestion($questionId, $body); // use this for testint this function
-        //$this->model->deleteQuestion($questionId); // test this function with this row
         $this->view->render();
     }
 

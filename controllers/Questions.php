@@ -10,6 +10,7 @@ class Questions extends Controller {
     }
 
     public function index() {
+        $this->view->css["paginator"] = "paginator.css";
         $this->view->title = 'Get your answers here!';
         $this->view->allQuestions = $this->model->getAllQuestions();
         $this->view->allTags = $this->model->getAllTags();
@@ -19,7 +20,7 @@ class Questions extends Controller {
 
     public function category($getParams) {
         $category = (int) $getParams[0];
-        $this->view->title = 'questions/category';
+        $this->view->title = 'All questions in cateogry';
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
         $this->view->allQuestions = $this->model->getAllQuestions(array("category" => $category, "tag" => ""));
@@ -27,7 +28,7 @@ class Questions extends Controller {
     }
 
     public function tag($getParams) {
-        $this->view->title = 'questions/tag';
+        $this->view->title = 'All questions for tag';
         $tag = $this->sanitize($getParams[0]);
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
