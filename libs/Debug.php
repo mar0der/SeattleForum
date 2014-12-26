@@ -1,12 +1,12 @@
 <?php
-function v($var)
-{
+
+function v($var) {
     echo "<pre>";
     var_dump($var);
     echo "</pre>";
 }
-function vd($var)
-{
+
+function vd($var) {
     echo "<pre>";
     var_dump($var);
     echo "</pre>";

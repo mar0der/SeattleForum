@@ -1,5 +1,5 @@
 <section id="content">
-    <?php echo "Message: ".@$this->message; ?>
+    <?php echo "Message: " . @$this->message; ?>
 </section>
 <aside id="categories">
     <header>Categories:</header>

@@ -39,13 +39,13 @@ class Questions extends Controller {
     }
 
     public function ajaxvote() {
-        if(isset($_POST) && count($_POST)>0){
+        if (isset($_POST) && count($_POST) > 0) {
             $vote = $this->sanitize($_POST["vote"]);
             $questionId = $this->sanitize($_POST["questionId"]);
             $voted = $this->model->checkIfVoted(Session::get('userid'), $questionId);
             $this->view->hasVoted = $voted;
-            if($voted == 0) {
-                if((int)$vote == 1) {
+            if ($voted == 0) {
+                if ((int) $vote == 1) {
                     $votePlus = $this->model->votePlus(Session::get('userid'), $questionId, null);
                     echo $votePlus;
                 } else {
@@ -53,7 +53,7 @@ class Questions extends Controller {
                     echo $voteMinus;
                 }
             }
-        }else{
+        } else {
             $this->redirect('questions/index');
         }
     }

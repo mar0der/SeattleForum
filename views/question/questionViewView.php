@@ -158,12 +158,12 @@
 
 </style>
 <script>
-    $(document).ready(function() {
-        $("#button").click(function() {
+    $(document).ready(function () {
+        $("#button").click(function () {
             $("#addAnswer").toggle("blind", {}, 500);
         });
 
-        $("#submitAnswer").click(function() {
+        $("#submitAnswer").click(function () {
             $("#addAnswer").hide("blind", {}, 500);
         });
     });

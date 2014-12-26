@@ -17,23 +17,23 @@ class Answer extends Controller {
     }
 
     public function add($params = '') {
-        
-          if(isset($_POST) && count($_POST) > 0) {
+
+        if (isset($_POST) && count($_POST) > 0) {
             $postData = $this->sanitizeArray($_POST);
-            if($postData['questionId'] != 0) {
+            if ($postData['questionId'] != 0) {
                 if (empty($postData['answerBody'])) {
-                    $this->redirect('/question/view/'.$postData['questionId']."/noempty");
+                    $this->redirect('/question/view/' . $postData['questionId'] . "/noempty");
                     die;
                 } else {
                     $body = htmlentities($_POST['answerBody']);
                     $this->model->addAnswer($postData['questionId'], Session::get('userid'), $body);
-                    $this->redirect('/question/view/'.$postData['questionId']);
+                    $this->redirect('/question/view/' . $postData['questionId']);
                     die;
                 }
             } else {
                 $this->redirect('/error');
             }
-        } 
+        }
         $this->redirect('/questions');
     }
 

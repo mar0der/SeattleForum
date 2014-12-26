@@ -85,7 +85,7 @@ class Database extends PDO {
             $sth = $this->prepare("DELETE FROM `$table` WHERE $where LIMIT $limit");
             $sth->bindValue(":$key", $value);
             return $sth->execute();
-        }else{
+        } else {
             return false;
         }
     }

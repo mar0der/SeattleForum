@@ -1,34 +1,31 @@
 <?php
+
 class Dashboard extends Controller {
 
-    function __construct($c, $controllerName, $actionName) 
-    {
-        parent::__construct($c, $controllerName, $actionName); 
-        if(!Auth::isAuth(get_class())){
+    function __construct($c, $controllerName, $actionName) {
+        parent::__construct($c, $controllerName, $actionName);
+        if (!Auth::isAuth(get_class())) {
             header('location: ../error/notauth');
         }
         $this->view->js = array('dashboard/index.js');
     }
-    
-    function index() 
-    {    
+
+    function index() {
         $this->view->title = 'Dashboard';
         $this->view->render();
     }
-       
-    function xhrInsert()
-    {
+
+    function xhrInsert() {
         $this->model->xhrInsert();
     }
-    
-    function xhrGetListings()
-    {
+
+    function xhrGetListings() {
         $this->model->xhrGetListings();
     }
-             
-    function xhrDeleteListing()
-    {
+
+    function xhrDeleteListing() {
         $this->model->xhrDeleteListing();
         echo 1;
     }
+
 }

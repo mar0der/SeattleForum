@@ -104,13 +104,13 @@
 </style>
 <script>
     function voteUp(questionId) {
-        $.post("questions/ajaxvote", {vote: "1", questionId: questionId}, function(data) {
+        $.post("questions/ajaxvote", {vote: "1", questionId: questionId}, function (data) {
             $("#scoring-" + questionId).html(data);
         });
     }
 
     function voteDown(questionId) {
-        $.post("questions/ajaxvote", {vote: "-1", questionId: questionId}, function(data) {
+        $.post("questions/ajaxvote", {vote: "-1", questionId: questionId}, function (data) {
             $("#scoring-" + questionId).html(data);
         });
     }

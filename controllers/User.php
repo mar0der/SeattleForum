@@ -105,7 +105,7 @@ class User extends Controller {
         $this->view->allTags = $this->questionsModel->getAllTags();
 //Save user`s data
         if (isset($_POST) && count($_POST) > 0) {
-            
+
             $postData = $this->sanitizeArray($_POST);
             //vd($postData);
             $errors = array();

@@ -15,10 +15,10 @@
         <br/>
         <label for="answerBody">Your answer:</label>
         <textarea name="answerBody" id="answerBody"></textarea><br />
-        <input type="hidden" name="questionId" value="<?=$this->questionId?>" />
+        <input type="hidden" name="questionId" value="<?= $this->questionId ?>" />
         <input type="submit" value="Add">
     </form>
-    <span id="error"><?= @$this->response?></span>
+    <span id="error"><?= @$this->response ?></span>
 </section>
 <aside id="categories">
     <header>Categories:</header>

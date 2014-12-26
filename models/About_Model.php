@@ -1,10 +1,9 @@
 <?php
 
-class About_Model extends Model 
-{
+class About_Model extends Model {
 
-    public function __construct($c) 
-    {
+    public function __construct($c) {
         parent::__construct($c);
     }
+
 }

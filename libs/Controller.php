@@ -28,7 +28,7 @@ class Controller {
             return new $modelName($c);
         }
     }
-    
+
     /**
      * 
      * @param string $url 'controller/action'
@@ -37,20 +37,20 @@ class Controller {
     public function redirect($url) {
         header('location: ' . $url);
     }
-    
+
     /**
      * 
      * @param array of strings $inputArray
      * @return array of strings
      */
-    public function sanitizeArray($inputArray){
+    public function sanitizeArray($inputArray) {
         $outputArray = array();
-        foreach($inputArray as $k => $v){
+        foreach ($inputArray as $k => $v) {
             $outputArray[$k] = $this->sanitize($v);
         }
         return $outputArray;
     }
-    
+
     /**
      * 
      * @param string $input
