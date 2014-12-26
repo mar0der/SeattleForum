@@ -1,7 +1,7 @@
 <?php
 
 class Config {
-
+    
     public function __construct($configFile) {
         if (file_exists($configFile)) {
             require $configFile;
