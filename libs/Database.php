@@ -4,8 +4,9 @@ class Database extends PDO {
 
     public function __construct($DB_TYPE, $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS) {
         parent::__construct($DB_TYPE . ':host=' . $DB_HOST . ';dbname=' . $DB_NAME, $DB_USER, $DB_PASS);
-
-        //parent::setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTIONS);
+        //uncomment bottom row for debugging only
+        parent::setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        parent::setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
     /**
@@ -16,12 +17,14 @@ class Database extends PDO {
      * @return mixed
      */
     public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC) {
+
         $sth = $this->prepare($sql);
+
         foreach ($array as $key => $value) {
             $sth->bindValue("$key", $value);
         }
-
         $sth->execute();
+
         return $sth->fetchAll($fetchMode);
     }
 

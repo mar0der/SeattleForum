@@ -6,9 +6,9 @@ class Error extends Controller {
         parent::__construct($c, $controllerName, $actionName);
     }
 
-    function index($msg = 'This page doesn\'t exist!') {
+    function index($params = "") {
         $this->view->title = '404 Error';
-        $this->view->msg = $msg;
+        $this->view->msg = $params[0];
         $this->view->render();
     }
 

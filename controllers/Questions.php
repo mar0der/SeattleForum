@@ -9,22 +9,52 @@ class Questions extends Controller {
         }
     }
 
-    public function index() {
+    public function index($getParams) {
+        if (!is_array($getParams) or count($getParams) < 1) {
+            $currentPage = 1;
+        } else {
+            $currentPage = (int) $getParams[0];
+        }
         $this->view->css["paginator"] = "paginator.css";
         $this->view->title = 'Get your answers here!';
-        $this->view->allQuestions = $this->model->getAllQuestions();
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
+        $dataParams = array(
+            "category" => "",
+            "tag" => ""
+        );
+        $paginator = Paginator::create($this->model, "getAllQuestions")
+                ->setResultsPerPage(5)
+                ->setCurrentPage($currentPage)
+                ->setPaginatorHtml("paginatorView.php")
+                ->setDataParams($dataParams);
+        $this->view->allQuestions = $paginator->getData();
+        $this->view->paginator = $paginator;
         $this->view->render();
     }
 
     public function category($getParams) {
         $this->view->css["paginator"] = "paginator.css";
         $category = (int) $getParams[0];
+        if (!is_array($getParams) or count($getParams) < 2) {
+            $currentPage = 1;
+        } else {
+            $currentPage = (int) $getParams[1];
+        }
         $this->view->title = 'All questions in cateogry';
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
-        $this->view->allQuestions = $this->model->getAllQuestions(array("category" => $category, "tag" => ""));
+        $dataParams = array(
+            "category" => $category,
+            "tag" => ""
+        );
+        $paginator = Paginator::create($this->model, "getAllQuestions")
+                ->setResultsPerPage(5)
+                ->setCurrentPage($currentPage)
+                ->setPaginatorHtml("paginatorView.php")
+                ->setDataParams($dataParams);
+        $this->view->allQuestions = $paginator->getData();
+        $this->view->paginator = $paginator;
         $this->view->render('questions/index'); //reusing the view of index
     }
 
@@ -32,9 +62,24 @@ class Questions extends Controller {
         $this->view->css["paginator"] = "paginator.css";
         $this->view->title = 'All questions for tag';
         $tag = $this->sanitize($getParams[0]);
+        if (!is_array($getParams) or count($getParams) < 2) {
+            $currentPage = 1;
+        } else {
+            $currentPage = (int) $getParams[1];
+        }
         $this->view->allTags = $this->model->getAllTags();
         $this->view->allCategories = $this->model->getAllCategories();
-        $this->view->allQuestions = $this->model->getAllQuestions(array("category" => "", "tag" => $tag));
+        $dataParams = array(
+            "category" => "",
+            "tag" => $tag
+        );
+        $paginator = Paginator::create($this->model, "getAllQuestions")
+                ->setResultsPerPage(5)
+                ->setCurrentPage($currentPage)
+                ->setPaginatorHtml("paginatorView.php")
+                ->setDataParams($dataParams);
+        $this->view->allQuestions = $paginator->getData();
+        $this->view->paginator = $paginator;
         $this->view->render('questions/index'); //reusing the view of index
     }
 

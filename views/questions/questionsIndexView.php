@@ -144,16 +144,10 @@
                 on <span class="last-answer-time"><?= $this->allQuestions[$i]["latest_answer"]["create_date"] ?></span>
             </div>
         </article>
-    <?php } ?>
-    <div id="paginator-container">
-        <a href="#" class="page first-page">&lt;&lt;first</a>
-        <a href="2" class="page">2</a>
-        <a href="3" class="page">3</a>
-        <a href="3" class="page active">4</a>
-        <a href="5" class="page">5</a>
-        <a href="6" class="page">6</a>
-        <a href="#" class="page last-page">last&gt;&gt;</a>
-    </div>
+    <?php } 
+        echo $this->paginator->render();
+    ?>
+    
 </section>
 <aside id="categories">
     <header>Categories:</header>
