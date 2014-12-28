@@ -10,3 +10,11 @@
 9. Add edit answer functionality
 10. Add delete answer functionality
 11. Implement WYSIWYG to all text areas.
+
+29.12.2014
+suggested by https://github.com/axisdos
+1. SEO Friendly Url
+2. Canonical tag
+3. Noindex for subpages (page/2 for posts)
+4. Auto generate meta description using post exceprt
+5. A box under editor box for post starter to enter meta keywords (this could be enable and disable based on role (admin, mod, user, etc)
