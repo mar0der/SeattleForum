@@ -24,9 +24,11 @@ class Questions extends Controller {
             "tag" => ""
         );
         $paginator = Paginator::create($this->model, "getAllQuestions")
-                ->setResultsPerPage(5)
+                ->setResultsPerPage(3)
                 ->setCurrentPage($currentPage)
+                ->setVisiblePages(5)
                 ->setPaginatorHtml("paginatorView.php")
+                ->setLinkPrefix("/questions/index/")
                 ->setDataParams($dataParams);
         $this->view->allQuestions = $paginator->getData();
         $this->view->paginator = $paginator;
@@ -49,9 +51,11 @@ class Questions extends Controller {
             "tag" => ""
         );
         $paginator = Paginator::create($this->model, "getAllQuestions")
-                ->setResultsPerPage(5)
+                ->setResultsPerPage(3)
                 ->setCurrentPage($currentPage)
+                ->setVisiblePages(5)
                 ->setPaginatorHtml("paginatorView.php")
+                ->setLinkPrefix("/questions/category/" . $category . "/")
                 ->setDataParams($dataParams);
         $this->view->allQuestions = $paginator->getData();
         $this->view->paginator = $paginator;
@@ -74,9 +78,11 @@ class Questions extends Controller {
             "tag" => $tag
         );
         $paginator = Paginator::create($this->model, "getAllQuestions")
-                ->setResultsPerPage(5)
+                ->setResultsPerPage(3)
                 ->setCurrentPage($currentPage)
+                ->setVisiblePages(5)
                 ->setPaginatorHtml("paginatorView.php")
+                ->setLinkPrefix("/questions/tag/" . $tag . "/")
                 ->setDataParams($dataParams);
         $this->view->allQuestions = $paginator->getData();
         $this->view->paginator = $paginator;

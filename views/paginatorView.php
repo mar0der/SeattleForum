@@ -1,9 +1,23 @@
 <div id="paginator-container">
-    <a href="#" class="page first-page">&lt;&lt;first</a>
-    <a href="2" class="page">2</a>
-    <a href="3" class="page">3</a>
-    <a href="3" class="page active">4</a>
-    <a href="5" class="page">5</a>
-    <a href="6" class="page">6</a>
-    <a href="#" class="page last-page">last&gt;&gt;</a>
+    <?php
+    if ($this->_hasFirstBtn) { //first button design. change the html and css only
+        ?>
+        <a href="<?= $this->_linkPrefix . "1" ?>" class="page first-page">&lt;&lt;</a>
+        <?php
+    }
+    for ($i = $this->_firstVisiblePage; $i <= $this->_lastVisiblePage; $i++) {
+        if ($i == $this->_currentPage) {
+            $active = " active"; //active is the name of the class for the active page
+        } else {
+            $active = "";
+        }
+        //regular button desing + curren page design
+        ?>
+        <a href="<?= $this->_linkPrefix . $i ?>" class="page<?= $active ?>"><?= $i ?></a>
+        <?php
+    }
+    if ($this->_hasLastBtn) { //last button design 
+        ?>
+        <a href="<?= $this->_linkPrefix . $this->_totalPages; ?>" class="page last-page">&gt;&gt;</a>
+    <?php } ?>
 </div>

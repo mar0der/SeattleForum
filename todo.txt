@@ -1,0 +1,12 @@
+28.12.2014
+1. Implement pagination to http://forum.petarpetkov.com/question/view/
+2. Fix edit user profile (not saving all changes)
+3. Add action Auth to the framework.
+4. Apply action Auth to buttons like edit user, delete user etc.
+5. Fix Ajax voting for question
+6. Fix Ajax voting for answer and adding the votes to the answerer.
+7. Add edit question functionality
+8. Add delete question functionality
+9. Add edit answer functionality
+10. Add delete answer functionality
+11. Implement WYSIWYG to all text areas.

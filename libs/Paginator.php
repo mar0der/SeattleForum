@@ -4,7 +4,6 @@ class Paginator {
 
     private static $instance;
     private $_resultsPerPage = 10;
-    private $_visiblePages = 5;
     private $_currentPage = 1;
     private $_totalResults;
     private $_totalPages;
@@ -12,6 +11,14 @@ class Paginator {
     private $_method;
     private $_dataParams;
     private $_paginatorHtml = "paginator.php";
+    //render settings
+    private $_hasFirstBtn = false;
+    private $_hasLastBtn = false;
+    private $_visiblePages = 5;
+    private $_linkPrefix = "";
+    private $_pageLink;
+    private $_firstVisiblePage = 1;
+    private $_lastVisiblePage = 5;
 
     public function __construct() {
         
@@ -49,7 +56,7 @@ class Paginator {
         $this->_dataParams["getCount"] = 0;
         $this->setTotalPages();
         $this->_dataParams["resultsPerPage"] = $this->_resultsPerPage;
-        $this->_dataParams["limitFirstResult"] = ((($this->_currentPage<1)?1:$this->_currentPage)-1) * $this->_resultsPerPage;
+        $this->_dataParams["limitFirstResult"] = ((($this->_currentPage < 1) ? 1 : $this->_currentPage) - 1) * $this->_resultsPerPage;
         $model = $this->_model;
         $method = $this->_method;
         return $model->$method($this->_dataParams);
@@ -60,8 +67,15 @@ class Paginator {
      * @return void - renders the paginator html file
      */
     public function render() {
+        if ($this->_totalPages < 2) {
+            return "";
+        }
         $paths = Config::getValue("paths");
         $paginatorFile = $paths["views"] . $this->_paginatorHtml;
+        $this->hasFirstButton();
+        $this->hasLastButton();
+        $this->calcVisiblePages();
+
         if (file_exists($paginatorFile)) {
             require $paginatorFile;
         } else {
@@ -113,6 +127,16 @@ class Paginator {
     }
 
     /**
+     * adds a prefix for index actions
+     * @param string $linkPrefix
+     * @return \Paginator
+     */
+    public function setLinkPrefix($linkPrefix) {
+        $this->_linkPrefix = $linkPrefix;
+        return $this;
+    }
+
+    /**
      * 
      * @param int $currentPage
      * @return \Paginator
@@ -141,51 +165,50 @@ class Paginator {
      * @return \Paginator
      */
     private function setTotalPages() {
-        if($this->_totalResults == 0){
+        if ($this->_totalResults == 0) {
             die("Paginator: No total results set");
         }
         $this->_totalPages = ceil($this->_totalResults / $this->_resultsPerPage);
         return $this;
     }
 
-    /**
-     * @param none
-     * @return int  results per page
-     */
-    function getResultsPerPage() {
-        return $this->_resultsPerPage;
+    private function hasFirstButton() {
+        if ($this->_currentPage > ceil($this->_visiblePages / 2)) {
+            $this->_hasFirstBtn = true;
+        } else {
+            $this->_hasFirstBtn = false;
+        }
     }
 
-    /**
-     * 
-     * @return int visibal pages on paginator 
-     */
-    function getVisiblePages() {
-        return $this->_visiblePages;
+    private function hasLastButton() {
+        if ($this->_currentPage > $this->_totalPages - ceil($this->_visiblePages / 2)) {
+            $this->_hasLastBtn = false;
+        } else {
+            $this->_hasLastBtn = true;
+        }
     }
 
-    /**
-     * 
-     * @return int current page
-     */
-    function getCurrentPage() {
-        return $this->_currentPage;
-    }
-
-    /**
-     * 
-     * @return int total results
-     */
-    function getTotalResults() {
-        return $this->_totalResults;
-    }
-
-    /**
-     * 
-     * @return int total pages
-     */
-    function getTotalPages() {
-        return $this->_totalPages;
+    private function calcVisiblePages() {
+        if ($this->_currentPage > $this->_visiblePages - ceil($this->_visiblePages / 2)) {
+            if ($this->_currentPage > $this->_totalPages - ceil($this->_visiblePages / 2)) {
+                if ($this->_currentPage - $this->_visiblePages <= 0) {
+                    $this->_firstVisiblePage = 1;
+                } else {
+                    $this->_firstVisiblePage = $this->_totalPages - $this->_visiblePages;
+                }
+                $this->_lastVisiblePage = $this->_totalPages;
+            } else {
+                $this->_firstVisiblePage = $this->_currentPage - floor($this->_visiblePages / 2);
+                $this->_lastVisiblePage = $this->_currentPage + floor($this->_visiblePages / 2);
+            }
+        } else {
+            $this->_firstVisiblePage = 1;
+            if ($this->_totalPages > $this->_visiblePages) {
+                $this->_lastVisiblePage = $this->_visiblePages;
+            } else {
+                $this->_lastVisiblePage = $this->_totalPages;
+            }
+        }
     }
 
 }
