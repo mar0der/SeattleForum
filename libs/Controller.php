@@ -9,6 +9,7 @@ class Controller {
     function __construct($c, $controllerName, $actionName) {
         $this->_controllerName = $controllerName;
         $this->_actionName = $actionName;
+        //if(Config::)
         $this->view = new View($c, $controllerName, $actionName);
         $this->c = $c;
     }
@@ -71,6 +72,11 @@ class Controller {
         return $output;
     }
 
+    /**
+     * returns cleanded string
+     * @param string $input
+     * @return string 
+     */
     public function cleanInput($input) {
 
         $search = array(
