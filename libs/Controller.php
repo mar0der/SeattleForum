@@ -2,16 +2,17 @@
 
 class Controller {
 
-    public $c;
     private $_controllerName;
     private $_actionName;
+    protected $c;
 
-    function __construct($c, $controllerName, $actionName) {
+    function __construct($controllerName, $actionName) {
+        global $c;
+        //pass all config info to the controllers children
+        $this->c = $c;
         $this->_controllerName = $controllerName;
         $this->_actionName = $actionName;
-        //if(Config::)
-        $this->view = new View($c, $controllerName, $actionName);
-        $this->c = $c;
+        $this->view = new View($controllerName, $actionName);
     }
 
     /**
@@ -20,13 +21,13 @@ class Controller {
      * @param string $path Location of the models
      * @return model instance
      */
-    public function loadModel($name, $modelPath, $c) {
+    public function loadModel($name, $modelPath ) {
         $file = $modelPath . $name . '_Model.php';
         if (file_exists($file)) {
             require $file;
             //the naming convetion for model`s class is Controller_Model
             $modelName = $name . '_Model';
-            return new $modelName($c);
+            return new $modelName();
         }
     }
 

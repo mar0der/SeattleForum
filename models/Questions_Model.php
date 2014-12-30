@@ -2,8 +2,8 @@
 
 class Questions_Model extends Model {
 
-    public function __construct($c) {
-        parent::__construct($c);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function getAllQuestions($params = array("category" => "", "tag" => "")) {  //default values of cat and tag might be better to be changed to null

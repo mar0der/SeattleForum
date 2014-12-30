@@ -2,11 +2,8 @@
 
 class Dashboard extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
-        if (!Auth::isAuth(get_class())) {
-            header('location: ../error/notauth');
-        }
+    function __construct($controllerName, $actionName) {
+        parent::__construct($controllerName, $actionName);
         $this->view->js = array('dashboard/index.js');
     }
 

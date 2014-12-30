@@ -2,8 +2,8 @@
 
 class Index extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
+    function __construct($controllerName, $actionName) {
+        parent::__construct($controllerName, $actionName);
     }
 
     function index() {

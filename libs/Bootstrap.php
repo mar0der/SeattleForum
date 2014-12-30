@@ -4,7 +4,7 @@ class Bootstrap {
 
     private $_url = null;
     private $_controller = null;
-    public $c;
+    private $c;
 
     /**
      * Starts the Bootstrap
@@ -12,8 +12,10 @@ class Bootstrap {
      * All configuration parameters have to be stored in $config array in the config file
      * @return boolean
      */
-    public function init($c) {
+    public function init() {
+        global $c;
         $this->c = $c;
+
         // Sets the protected $_url
         $this->_getUrl();
 
@@ -22,9 +24,8 @@ class Bootstrap {
             $this->_loadDefaultController();
             return false;
         }
-        $this->_loadExistingController($c);
+        $this->_loadExistingController();
         $this->_callControllerMethod();
-        return true;
     }
 
     /**
@@ -35,8 +36,8 @@ class Bootstrap {
         $url = rtrim($url, '/');
         $url = filter_var($url, FILTER_SANITIZE_URL);
         $this->_url = explode('/', $url);
-        //setting some default values
 
+        //setting some default values
         if (count($this->_url) == 1 && $this->_url[0] == '') {
             $this->_url[0] = 'index';
             $this->_url[1] = 'index';
@@ -50,7 +51,7 @@ class Bootstrap {
      */
     private function _loadDefaultController() {
         require $this->c->paths->controllers . $this->c->defaultFile;
-        $this->_controller = new Index($this->c, $this->_url[0], $this->_url[1]);
+        $this->_controller = new Index($this->_url[0], $this->_url[1]);
         $this->_controller->index();
     }
 
@@ -64,14 +65,23 @@ class Bootstrap {
         $file = $this->c->paths->controllers . ucfirst($this->_url[0]) . '.php';
 
         if (file_exists($file)) {
+            if($this->_url[0] == 'error'){
+                $this->_error("Bootstrap: Unknown error accured. Please contact your administrator!");
+            }
             require $file;
-            $this->_controller = new $this->_url[0]($this->c, $this->_url[0], $this->_url[1]);
-            //load additional models in the controller this way:
-            $this->_controller->model = $this->_controller->loadModel(ucfirst($this->_url[0]), $this->c->paths->models, $this->c);
-            return true;
+            if (Auth::isAuth($this->_url[0]."/".$this->_url[1])) {
+                $this->_controller = new $this->_url[0]($this->_url[0], $this->_url[1]);
+                //load additional models in the controller this way:
+                $this->_controller->model = $this->_controller->loadModel(ucfirst($this->_url[0]), $this->c->paths->models);
+                return true;
+            } else {
+                $this->_error("You are not aouthorized to view this page!");
+                return false;
+            }
+        } else {
+            $this->_error("This page does not exists!");
+            return false;
         }
-        $this->_error();
-        return false;
     }
 
     /**
@@ -89,12 +99,12 @@ class Bootstrap {
         if ($length > 1) {
             if (method_exists($this->_controller, $this->_url[1])) {
                 if ($length == 2) {
-                    $this->_controller->{$this->_url[1]}($params = '');
+                    $this->_controller->{$this->_url[1]}('');
                 } elseif ($length > 2) {
                     $this->_controller->{$this->_url[1]}(array_slice($this->_url, 2));
                 }
             } else {
-                $this->_error();
+                $this->_error("This action does not exists!");
             }
         } else {
             $this->_controller->index();
@@ -106,10 +116,10 @@ class Bootstrap {
      * 
      * @return boolean
      */
-    private function _error() {
+    private function _error($type = "error") {
         require $this->c->paths->controllers . $this->c->errorFile;
-        $this->_controller = new Error($this->c, $this->_url[0], $this->_url[1]);
-        $this->_controller->index();
+        $this->_controller = new Error();
+        $this->_controller->index(array($type));
         exit;
     }
 

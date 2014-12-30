@@ -9,7 +9,8 @@ class View {
     private $_actionName;
     public $url;
 
-    function __construct($c, $controllerName, $actionName) {
+    function __construct($controllerName, $actionName) {
+        global $c;
         $this->_controllerName = $controllerName;
         $this->_actionName = $actionName;
         $this->_viewPath = $c->paths->views;

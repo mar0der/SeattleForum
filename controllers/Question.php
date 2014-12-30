@@ -2,14 +2,10 @@
 
 class Question extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
-        if (!Auth::isAuth(get_class())) {
-            header('location: ../error/notauth');
-        }
-        $paths = Config::getValue('paths');
-        $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
-        $this->answersModel = $this->loadModel("Answer", $paths['models'], $c);
+    function __construct($controllerName, $actionName) {
+        parent::__construct($controllerName, $actionName);
+        $this->questionsModel = $this->loadModel("Questions", $this->c->paths->models);
+        $this->answersModel = $this->loadModel("Answer", $this->c->paths->models);
     }
 
     public function index() {
@@ -28,8 +24,7 @@ class Question extends Controller {
             $this->redirect('/error');
         }
 
-        $paths = Config::getValue('paths');
-        $this->view->avatarPath = $paths['avatarUrl'];
+        $this->view->avatarPath = $this->c->paths->avatarUrl;
         $this->view->answers = $this->answersModel->getAllAnswersForQuestion($questionId);
         $this->model->addVisit($questionId);
         $this->view->question = $this->model->getQuestion($questionId);

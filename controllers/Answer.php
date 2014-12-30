@@ -2,13 +2,10 @@
 
 class Answer extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
-//        if (!Auth::isAuth(get_class())) {
-//            header('location: ../error/notauth');
-//        }
+    function __construct($controllerName, $actionName) {
+        parent::__construct($controllerName, $actionName);
         $paths = Config::getValue('paths');
-        $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
+        $this->questionsModel = $this->loadModel("Questions", $paths['models']);
     }
 
     public function index() {

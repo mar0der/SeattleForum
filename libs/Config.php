@@ -16,10 +16,11 @@ class Config {
             }
             return $this;
         } else {
-            die('No Config file found! Please create one in the main folder!');
+            die('No Config file found! Please create one and name it /config/config.inc.php');
         }
     }
 
+    //this function might not be needed. I have to try accessing config parameters with $c->param
     public static function getValue($key) {
         $filename = "../config/config.inc.php";
         if (file_exists($filename)) {

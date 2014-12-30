@@ -2,10 +2,10 @@
 
 class User extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
+    function __construct($controllerName, $actionName) {
+        parent::__construct($controllerName, $actionName);
         $paths = Config::getValue('paths');
-        $this->questionsModel = $this->loadModel("Questions", $paths['models'], $c);
+        $this->questionsModel = $this->loadModel("Questions", $paths['models']);
     }
 
     public function index() {
@@ -195,9 +195,9 @@ class User extends Controller {
                 $this->redirect('/questions');
             }
         }
-        $paths = Config::getValue("paths");
+
         $this->view->d = $this->model->viewUser($userId);
-        $this->view->d[0]["avatar"] = $paths["avatarUrl"] . $this->view->d[0]["avatar"];
+        $this->view->d[0]["avatar"] = $this->c->paths->avatarUrl . $this->view->d[0]["avatar"];
         $this->view->render();
     }
 

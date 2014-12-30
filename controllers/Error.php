@@ -2,20 +2,13 @@
 
 class Error extends Controller {
 
-    function __construct($c, $controllerName, $actionName) {
-        parent::__construct($c, $controllerName, $actionName);
+    function __construct() {
+        parent::__construct("error", "index");
     }
 
-    function index($params = "") {
-        $this->view->title = '404 Error';
-        $this->view->msg = $params[0];
+    public function index($msgs = array(0 => "404")) {
+        $this->view->title = "An error occured";
+        $this->view->msgs = $msgs;
         $this->view->render();
     }
-
-    function notauth($msg = 'You don\'t have permissions to view this page!') {
-        $this->view->title = '404 Error';
-        $this->view->msg = $msg;
-        $this->view->render();
-    }
-
 }

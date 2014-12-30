@@ -2,8 +2,8 @@
 
 class Login_Model extends Model {
 
-    public function __construct($c) {
-        parent::__construct($c);
+    public function __construct() {
+        parent::__construct();
     }
 
     public function run() {

@@ -1,0 +1,5 @@
+30.12.2014
+Completely new acl system that allows to give custom permissions to each controllers action or any custom resource in any controller for any role.
+Changed the way config data is accessed everywhere. Use global $c instead passing it as an parameter to the class constructor.
+Redesigned Error controller logic and view.
+4.5 hours
