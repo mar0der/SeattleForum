@@ -11,7 +11,7 @@ $acl = array(
         'index' => array('', array('index')),
         'questions' => array('Home', array('index', 'category', 'tag')),
         'question' => array('', array('index', 'view')),
-        'user' => array('', array('register')),
+        'user' => array('', array('register', 'profile')),
         'about' => array('About', array('index'))
     ),
     'user' => array(
@@ -32,7 +32,7 @@ $acl = array(
         'questions' => array('Home', array('index', 'category', 'tag')),
         'question' => array('Ask', array('index', 'view', 'ask', 'edit', 'delete')),
         'answer' => array('', array('index', 'add', 'edit', 'delete')),
-        'user' => array('My Profile', array('index', 'register', 'profile', 'edit', 'delete')),
+        'user' => array('My Profile', array('index', 'register', 'profile', 'edit', 'delete', 'editBtn', 'deleteBtn')),
         'dashboard' => array(''),
         'about' => array('About', array('index')),
         'admin' => array('Admin Panel', array('index', 'create', 'edit', 'editSave', 'delete'))

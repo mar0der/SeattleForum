@@ -12,11 +12,11 @@ class Questions_Model extends Model {
                 $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid "
                         . "FROM questions as A "
                         . "INNER JOIN users as B ON A.creator_id = B.userid "
+                        . "ORDER BY  `A`.`create_date` DESC "
                         . "LIMIT :lfr, :rpp", array(
                     ":lfr" => $params["limitFirstResult"],
                     ":rpp" => $params["resultsPerPage"]
                 ));
-                
             } elseif ($params["category"] == "") {
                 $questions = $this->db->select("SELECT A.id as question_id, A.subject, A.score, A.visites, B.username, B.avatar, A.create_date, B.userid "
                         . "FROM questions as A "
@@ -24,6 +24,7 @@ class Questions_Model extends Model {
                         . "INNER JOIN tags_questions C ON A.id = C.question_id "
                         . "INNER JOIN tags D ON C.tag_id = D.tag_id "
                         . "WHERE D.tag_id = (:tag) "
+                        . "ORDER BY  `A`.`create_date` DESC "
                         . "LIMIT :limitFirstResult, :resultsPerPage", array(':tag' => $params["tag"],
                     ':limitFirstResult' => $params["limitFirstResult"],
                     ':resultsPerPage' => $params["resultsPerPage"]
@@ -34,6 +35,7 @@ class Questions_Model extends Model {
                         . "INNER JOIN users as B ON A.creator_id = B.userid "
                         . "INNER JOIN categories C ON A.category_id = C.id "
                         . "WHERE C.id = :catId "
+                        . "ORDER BY  `A`.`create_date` DESC "
                         . "LIMIT :limitFirstResult, :resultsPerPage", array(':catId' => $params["category"],
                     ':limitFirstResult' => $params["limitFirstResult"],
                     ':resultsPerPage' => $params["resultsPerPage"]
@@ -44,6 +46,7 @@ class Questions_Model extends Model {
                         . "INNER JOIN users as B ON A.creator_id = B.userid "
                         . "INNER JOIN categories C ON A.category_id = C.id "
                         . "WHERE C.id = :catId "
+                        . "ORDER BY  `A`.`create_date` DESC "
                         . "LIMIT :limitFirstResult, :resultsPerPage", array(':catId' => $params["category"],
                     ':limitFirstResult' => $params["limitFirstResult"],
                     ':resultsPerPage' => $params["resultsPerPage"]

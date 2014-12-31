@@ -186,7 +186,7 @@ class User extends Controller {
 
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
-        $this->view->title = Config::getValue('siteName') . ' - User Profile';
+        $this->view->title = $this->c->siteName . ' - User Profile';
         if ($getParams != NULL) {
             $userId = $this->sanitize($getParams[0]);
         } else {
@@ -197,6 +197,8 @@ class User extends Controller {
         }
 
         $this->view->d = $this->model->viewUser($userId);
+        $this->view->editBtn = (Auth::isAuth("user/editBtn") or $userId == Session::get("userid"));
+        $this->view->deleteBtn = (Auth::isAuth("user/deleteBtn") and $userId != Session::get("userid"));
         $this->view->d[0]["avatar"] = $this->c->paths->avatarUrl . $this->view->d[0]["avatar"];
         $this->view->render();
     }

@@ -3,3 +3,7 @@ Completely new acl system that allows to give custom permissions to each control
 Changed the way config data is accessed everywhere. Use global $c instead passing it as an parameter to the class constructor.
 Redesigned Error controller logic and view.
 4.5 hours
+31.12.2014
+New acl system applied to user profile edit/delete buttons. Users can see edit button only to thir profile and no delete button. Owners can see 
+delete buttons for every user except for thir profile. It is only applied only for button showing not for the actual actions.
+0.75 hours

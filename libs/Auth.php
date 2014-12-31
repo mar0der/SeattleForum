@@ -28,7 +28,7 @@ class Auth {
         
         if (file_exists($aclConfigFile)) {
             require $aclConfigFile;
-            if (@in_array($resource[1], @$acl[$role][$resource[0]][1])) {
+            if (@in_array($resource[1], array_map("strtolower",@$acl[$role][$resource[0]][1]))) {
                 return true;
             } else {
                 return false;
