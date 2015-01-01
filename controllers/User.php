@@ -104,39 +104,16 @@ class User extends Controller {
         $this->view->allCategories = $this->questionsModel->getAllCategories();
         $this->view->allTags = $this->questionsModel->getAllTags();
 //Save user`s data
-        if (isset($_POST) && count($_POST) > 0) {
+        if (isset($_POST) && count($_POST) > 0 && (Auth::isAuth('user/editBtn') or Session::get('userid') == $_POST['userid'])) {
 
             $postData = $this->sanitizeArray($_POST);
-            //vd($postData);
             $errors = array();
             $genders = array('male', 'female', 'unknown');
 
-            //$userid = $postData['userid'];
-            $pass = $postData['pass'];
-            $confirmPass = $postData['confirm-pass'];
-            $email = $postData['email'];
-            $regexEmail = '/\b[a-zA-Z_0-9]+@[a-zA-Z0-9]+\.[a-z]{2,6}\b/';
-            $gender = (int) $postData['gender'];
-            $userGender = $genders[$gender];
-            $realName = $postData['first-name'];
             vd($postData);
             $avatar = $this->view->dataUser[0]['avatar'];
 
-            if ((mb_strlen($realName) < 4 || mb_strlen($realName) > 25) || (preg_match('/\b[a-zA-Z]+\b/', $realName)) == 0) {
-                $errors['first-name'] = 'Invalid First name';
-            }
 
-            if ($gender > 2 || $gender < 0) {
-                $errors['gender'] = 'Invalid gender';
-            }
-
-            if ($pass != $confirmPass || (mb_strlen($pass) < 6 || mb_strlen($pass) > 64)) {
-                $errors['pass-error'] = "Invalid password";
-            }
-
-            if (preg_match($regexEmail, $email) != 1) {
-                $errors['email'] = 'Invalid Email';
-            }
 
             if (!$_FILES['pic']['name'] == NULL && count($errors) == 0) {
                 $size = 6291456;
@@ -160,24 +137,24 @@ class User extends Controller {
             }
             if (count($errors) == 0) {
                 if ($this->model->saveEditedUser(USERID, $pass, $email, $role, $realName, $userGender, $avatar)) {
-                    echo 'edit';
-                    die('yes');
+
                 } else {
-                    die('not');
+
                 }
             } else {
-                v($error);
-                die();
+
                 $this->view->e = $errors;
             }
         }
+//end of saving user`s data
+        
 //Load the edit page with user`s data
-        if ($getParams != NULL && (Session::get('userid') == $getParams[0] || Session::get('role') == 'owner')) {
+        if ($getParams != NULL && (Session::get('userid') == $getParams[0] || Auth::isAuth('user/editBtn'))) {
             $editedUserId = $this->sanitize($getParams[0]);
         } else {
-            $this->redirect('/error/notauth');
+            $this->redirect('/error/index');
         }
-        $this->view->title = Config::getValue('siteName') . ' - Edit user ' . $editedUserId;
+        $this->view->title = $this->c->siteName . ' - Edit user ' . $editedUserId;
         $this->view->dataUser = $this->model->viewUser($editedUserId);
         $this->view->render();
     }
@@ -204,10 +181,10 @@ class User extends Controller {
     }
 
     public function delete($getParams = '') {
-        if ($getParams != NULL && Session::get('userid') != $getParams[0] && Session::get('role') == 'owner') {
+        if ($getParams != NULL && Session::get('userid') != $getParams[0] && Auth::isAuth('user/deleteBtn')) {
             $userId = $this->sanitize($getParams[0]);
         } else {
-            $this->redirect('/error/notauth');
+            $this->redirect('/error/index');
         }
 
         if ($this->model->deleteUser($userId)) {
@@ -215,7 +192,7 @@ class User extends Controller {
             $this->view->render('user/success');
             die();
         } else {
-            $this->redirect('/error/notauth');
+            $this->redirect('/error/index');
         }
     }
 

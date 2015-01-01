@@ -66,7 +66,7 @@ class Bootstrap {
 
         if (file_exists($file)) {
             if($this->_url[0] == 'error'){
-                $this->_error("Bootstrap: Unknown error accured. Please contact your administrator!");
+                $this->_error("Bootstrap: Unknown error occured. Please contact your administrator!");
             }
             require $file;
             if (Auth::isAuth($this->_url[0]."/".$this->_url[1])) {

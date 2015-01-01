@@ -7,3 +7,6 @@ Redesigned Error controller logic and view.
 New acl system applied to user profile edit/delete buttons. Users can see edit button only to thir profile and no delete button. Owners can see 
 delete buttons for every user except for thir profile. It is only applied only for button showing not for the actual actions.
 0.75 hours
+01.01.2015 
+acl implemented to the delete and edit actions at user controller
+0.5 hours
