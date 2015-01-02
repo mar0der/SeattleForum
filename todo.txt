@@ -18,3 +18,6 @@ suggested by https://github.com/axisdos
 3. Noindex for subpages (page/2 for posts)
 4. Auto generate meta description using post exceprt
 5. A box under editor box for post starter to enter meta keywords (this could be enable and disable based on role (admin, mod, user, etc)
+
+02.01.2015
+1.form validation for the mvc framework. Started 02.01.2015 

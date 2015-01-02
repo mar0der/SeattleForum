@@ -10,3 +10,6 @@ delete buttons for every user except for thir profile. It is only applied only f
 01.01.2015 
 acl implemented to the delete and edit actions at user controller
 0.5 hours
+02.01.2015
+started a new form validation class
+0.5 hours
