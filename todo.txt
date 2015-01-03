@@ -20,4 +20,4 @@ suggested by https://github.com/axisdos
 5. A box under editor box for post starter to enter meta keywords (this could be enable and disable based on role (admin, mod, user, etc)
 
 02.01.2015
-1.form validation for the mvc framework. Started 02.01.2015 
+1.form validation for the mvc framework. Started 02.01.2015 continued 03.01.2015

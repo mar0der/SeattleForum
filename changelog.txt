@@ -13,3 +13,6 @@ acl implemented to the delete and edit actions at user controller
 02.01.2015
 started a new form validation class
 0.5 hours
+03.01.2015
+more work on form validator class. Email, username and password validation methods done.
+0.75 hours
