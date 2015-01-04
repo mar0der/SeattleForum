@@ -16,3 +16,6 @@ started a new form validation class
 03.01.2015
 more work on form validator class. Email, username and password validation methods done.
 0.75 hours
+04.01.2015
+added error field with setter and getter and implemented to all finished validators
+0.5 hours
