@@ -2,8 +2,15 @@
 
 class FormValidator {
 
-    private $errors = [];
+    public $errors = array();
 
+    public function checkFields($fields){
+        foreach($fields as $k => $v){
+            $k = ucfirst($k);
+            $this->$k($v);
+        }
+    }
+    
     public function username($username = '', $params = '') {
         //change this logic to make parameters required. This is unsafe now!
         if ($params != '') {
@@ -24,6 +31,25 @@ class FormValidator {
     }
 
     public function password($password = '', $params = '') {
+        if ($params != '') {
+            $pattern = $params['pattern'];
+            $minLength = $params['minLength'];
+            $maxLength = $params['maxLength'];
+        } else {
+            $minLength = 6;
+            $maxLength = 20;
+            $pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?!.*\s).{" . $minLength . "," . $maxLength . "}$/";
+        }
+        if (preg_match($pattern, $password)) {
+            return true;
+        } else {
+            $this->setErrors('password', "Psword must be between " . $minLength . " and " . $maxLength . "and to contain at least one capital letter, small letter and digit");
+            return false;
+        }
+    }
+    
+        public function confirmPassword($password = '', $params = '') {
+            //this is copy of the code from password please change it
         if ($params != '') {
             $pattern = $params['pattern'];
             $minLength = $params['minLength'];

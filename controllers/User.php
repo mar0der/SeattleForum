@@ -18,12 +18,22 @@ class User extends Controller {
         $this->view->title = Config::getValue('siteName') . ' - Register to our forum!';
         mb_internal_encoding('UTF-8');
         if ($_POST && isset($_POST['gender'])) {
-            $errors = array();
             $username = trim($_POST['username']);
-            $regexName = '/[a-zA-Z]/';
-            $pass = trim($_POST['pass']);
-            $confirmPass = trim($_POST['confirm-pass']);
+            $password = trim($_POST['pass']);
+            $confirmPassword = trim($_POST['confirm-pass']);
             $email = trim($_POST['email']);
+            $formValidator = new FormValidator();
+            $formValidator->checkFields(array(
+                'username' => $password,
+                'password' => $password,
+                'confirmPassword' => $confirmPassword,
+                'email' => $email
+            ));
+
+            vd($formValidator->errors);
+
+
+
             $regexEmail = '/\b[a-zA-Z_0-9]+@[a-zA-Z0-9]+\.[a-z]{2,6}\b/';
             $gender = (int) trim($_POST['gender']);
             $realName = trim($_POST['first-name']);
@@ -137,9 +147,9 @@ class User extends Controller {
             }
             if (count($errors) == 0) {
                 if ($this->model->saveEditedUser(USERID, $pass, $email, $role, $realName, $userGender, $avatar)) {
-
+                    
                 } else {
-
+                    
                 }
             } else {
 
@@ -147,7 +157,6 @@ class User extends Controller {
             }
         }
 //end of saving user`s data
-        
 //Load the edit page with user`s data
         if ($getParams != NULL && (Session::get('userid') == $getParams[0] || Auth::isAuth('user/editBtn'))) {
             $editedUserId = $this->sanitize($getParams[0]);
